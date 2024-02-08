@@ -13,4 +13,16 @@
 
     <name>frameworks</name>
     <description>frameworks,作为总工程的子模块,用于存放组件库.同时也是后续所有组件的父模块,因此设置打包方式为 pom</description>
+
+    <modules>
+        <!-- 注意，Maven 在这里只认识目录名，而非模块名 -->
+        <module>base</module>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
