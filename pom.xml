@@ -13,6 +13,9 @@
         SpringBoot3+Java17+SpringCloudAlibaba+RocketMQ等技术架构，
         完成12306用户+购票+订单服务
     </description>
+    <modules>
+        <module>frameworks/convention</module>
+    </modules>
 
     <properties>
         <java.version>17</java.version>

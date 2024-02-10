@@ -4,22 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.sjj</groupId>
-        <artifactId>index-12306-all</artifactId>
+        <artifactId>frameworks</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>frameworks</artifactId>
-    <packaging>pom</packaging>
-
-    <name>frameworks</name>
-    <description>frameworks,作为总工程的子模块,用于存放组件库.同时也是后续所有组件的父模块,因此设置打包方式为 pom</description>
-
-    <modules>
-        <!-- 注意，Maven 在这里只认识目录名，而非模块名 -->
-        <module>base</module>
-        <module>convention</module>
-        <module>database</module>
-    </modules>
+    <artifactId>convention-spring-boot-starter</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
