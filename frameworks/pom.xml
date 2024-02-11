@@ -19,6 +19,8 @@
         <module>base</module>
         <module>convention</module>
         <module>database</module>
+        <module>common</module>
+        <module>web</module>
     </modules>
     <dependencies>
         <dependency>

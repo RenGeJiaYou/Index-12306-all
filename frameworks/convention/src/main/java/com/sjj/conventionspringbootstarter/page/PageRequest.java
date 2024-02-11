@@ -6,6 +6,9 @@ package com.sjj.conventionspringbootstarter.page;
  * @Author Island_World
  */
 
+import lombok.Data;
+
+@Data
 public class PageRequest {
     // 当前页数
     private Long current;

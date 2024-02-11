@@ -9,6 +9,7 @@ package com.sjj.conventionspringbootstarter.exception;
 import com.sjj.conventionspringbootstarter.errorcode.BaseErrorCode;
 import com.sjj.conventionspringbootstarter.errorcode.IErrorCode;
 
+
 public class ClientException extends AbstractException{
     public ClientException(IErrorCode errorCode) {
         this(null, null, errorCode);

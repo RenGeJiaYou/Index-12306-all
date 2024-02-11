@@ -10,10 +10,12 @@ package com.sjj.conventionspringbootstarter.exception;
  */
 
 import com.sjj.conventionspringbootstarter.errorcode.IErrorCode;
+import lombok.Getter;
 import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
+@Getter
 public abstract class AbstractException extends RuntimeException {
     public final String errorCode;
 
