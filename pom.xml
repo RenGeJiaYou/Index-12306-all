@@ -22,6 +22,7 @@
         <spotless-maven-plugin.version>2.22.1</spotless-maven-plugin.version>
         <skip.checkstyle.check>true</skip.checkstyle.check>
         <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
+        <lombok.version>1.18.30</lombok.version>
     </properties>
 
     <!-- 所有的子模块都继承以下依赖 -->
@@ -32,8 +33,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
     </dependencies>
 
