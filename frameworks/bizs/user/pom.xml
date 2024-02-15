@@ -13,8 +13,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<groupId>com.sjj</groupId>
+			<artifactId>base-spring-boot-starter</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 
 		<dependency>
