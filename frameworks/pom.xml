@@ -22,6 +22,7 @@
         <module>common</module>
         <module>web</module>
         <module>bizs</module>
+        <module>designpattern</module>
     </modules>
     <dependencies>
         <dependency>
