@@ -35,7 +35,7 @@ public final class AbstractChainContext<T> implements CommandLineRunner {
     }
 
     /**
-     * run() 将在 Application 启动后执行一些初始化任务，例如初始化数据库，启动定时任务，加载缓存数据等。\n
+     * run() 将在 Application 启动后执行一些初始化任务，例如初始化数据库，启动定时任务，加载缓存数据等。
      * 在这里，我们将【从 SpringBoot Application Context 中找到的】责任链处理类加载到 abstractChainHandlerContainer 容器中。
      * */
     @Override
