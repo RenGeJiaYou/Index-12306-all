@@ -37,6 +37,8 @@ public class EagerThreadPoolExecutor extends ThreadPoolExecutor {
             // 捕获到满队异常，就再试一次
             TaskQueue taskQueue = (TaskQueue) super.getQueue();
             try {
+                 /*抛出拒绝异常后就马上重试一下能不能直接加入队列
+                 不能的话就直接抛异常，所以把超时时间设置为 0*/
                 if (!taskQueue.retryOffer(command, 0, TimeUnit.SECONDS)) {
                     submittedTaskCount.decrementAndGet();
                     throw new RejectedExecutionException("Queue capacity is full.", ex);
