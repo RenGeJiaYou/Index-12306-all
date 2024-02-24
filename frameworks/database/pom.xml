@@ -22,13 +22,13 @@
             <version>${project.version}</version>
         </dependency>
 
-        <!--
+
         <dependency>
-			<groupId>org.opengoofy.index12306</groupId>
-			<artifactId>index12306-distributedid-spring-boot-starter</artifactId>
-			<version>${project.version}</version>
+			<groupId>com.sjj</groupId>
+			<artifactId>distributedid-spring-boot-starter</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		-->
+
 
         <dependency>
             <groupId>com.sjj</groupId>
