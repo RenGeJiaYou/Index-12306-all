@@ -23,6 +23,7 @@
         <module>web</module>
         <module>bizs</module>
         <module>designpattern</module>
+        <module>distributedid</module>
     </modules>
     <dependencies>
         <dependency>
