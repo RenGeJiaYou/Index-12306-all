@@ -24,6 +24,7 @@
         <module>bizs</module>
         <module>designpattern</module>
         <module>distributedid</module>
+        <module>log</module>
     </modules>
     <dependencies>
         <dependency>
