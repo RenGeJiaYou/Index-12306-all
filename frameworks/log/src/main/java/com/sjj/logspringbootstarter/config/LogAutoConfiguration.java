@@ -17,6 +17,5 @@ public class LogAutoConfiguration {
     @Bean
     public ILogPrintAspect iLogPrintAspect() {
         return new ILogPrintAspect();
-
     }
 }

@@ -25,6 +25,7 @@
         <module>designpattern</module>
         <module>distributedid</module>
         <module>log</module>
+        <module>idempotent</module>
     </modules>
     <dependencies>
         <dependency>

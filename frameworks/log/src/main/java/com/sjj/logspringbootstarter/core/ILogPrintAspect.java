@@ -38,10 +38,12 @@ public class ILogPrintAspect {
         try {
             result = joinPoint.proceed();
         } finally {
-            Method targetMethod = joinPoint.getTarget().getClass().getDeclaredMethod(signature.getName(), signature.getMethod().getParameterTypes());
+            Method targetMethod = joinPoint.getTarget().getClass().getDeclaredMethod(
+                    signature.getName(), signature.getMethod().getParameterTypes());
             // 优先获取方法上的注解，没有再获取类上的注解
             ILog logAnnotation = Optional.ofNullable(targetMethod.getAnnotation(ILog.class))
                     .orElse(joinPoint.getTarget().getClass().getAnnotation(ILog.class));
+
             if (logAnnotation != null) {
                 ILogPrintDTO logPrintDTO = new ILogPrintDTO();
                 logPrintDTO.setBeginTime(beginTime);
