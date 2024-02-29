@@ -26,6 +26,7 @@
         <module>distributedid</module>
         <module>log</module>
         <module>idempotent</module>
+        <module>cache</module>
     </modules>
     <dependencies>
         <dependency>
