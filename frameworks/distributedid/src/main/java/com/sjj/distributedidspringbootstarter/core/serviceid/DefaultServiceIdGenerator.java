@@ -7,7 +7,7 @@ import com.sjj.distributedidspringbootstarter.toolkit.SnowflakeIdUtil;
 /**
  * 默认业务 ID 生成器实现类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public class DefaultServiceIdGenerator implements ServiceIdGenerator{

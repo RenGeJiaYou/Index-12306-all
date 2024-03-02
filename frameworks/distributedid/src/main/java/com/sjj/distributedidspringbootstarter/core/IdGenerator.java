@@ -3,7 +3,7 @@ package com.sjj.distributedidspringbootstarter.core;
 /**
  * ID 生成器
  *
- * @Author: Island_World
+ * @author: Island_World
  *
  */
 

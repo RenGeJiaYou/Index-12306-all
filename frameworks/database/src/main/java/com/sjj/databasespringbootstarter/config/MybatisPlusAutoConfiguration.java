@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Primary;
 /**
  * 配置类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public class MybatisPlusAutoConfiguration {

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
 import com.sjj.distributedidspringbootstarter.toolkit.SnowflakeIdUtil;
 
 /**
- * @Author Island_World
+ * @author Island_World
  */
 
 public class CustomIdGenerator implements IdentifierGenerator {

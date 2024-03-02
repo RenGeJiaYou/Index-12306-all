@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  * WorkId 包装类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 @Data

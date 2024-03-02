@@ -20,7 +20,7 @@ package com.sjj.basespringbootstarter;
 /*
  * 一个存放单例对象的容器类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import lombok.AccessLevel;

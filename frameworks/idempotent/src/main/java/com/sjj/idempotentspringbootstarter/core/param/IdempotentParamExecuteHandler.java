@@ -18,7 +18,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 /**
  * 基于方法参数验证幂等性
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 // @RequiredArgsConstructor 生成一个包含所有未初始化的 final 字段和 @NonNull 字段的构造函数。

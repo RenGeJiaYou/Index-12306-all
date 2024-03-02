@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
  * 当 Spring Boot 在启动时，会自动加载 ApplicationBaseAutoConfiguration 类中定义的 Bean。
  * 这个注解通常用在自定义的自动配置类中，以便将其他的自动配置类引入到当前的配置类中。
  * 这种方式可以帮助你更好地组织和管理你的自动配置类，尤其是当你有很多自动配置类需要被引入时。
- * @Author Island_World
+ * @author Island_World
  */
 @ImportAutoConfiguration(ApplicationBaseAutoConfiguration.class)
 public class DesignPatternAutoConfiguration {

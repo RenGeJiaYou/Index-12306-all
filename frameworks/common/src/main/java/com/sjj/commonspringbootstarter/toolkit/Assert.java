@@ -3,7 +3,7 @@ package com.sjj.commonspringbootstarter.toolkit;
 /*
  * 断言工具类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import org.springframework.util.CollectionUtils;

@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 日志打印实体类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 @Data

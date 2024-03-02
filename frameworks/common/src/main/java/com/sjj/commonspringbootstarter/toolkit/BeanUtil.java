@@ -3,7 +3,7 @@ package com.sjj.commonspringbootstarter.toolkit;
 /*
  * 对象属性复制工具类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;

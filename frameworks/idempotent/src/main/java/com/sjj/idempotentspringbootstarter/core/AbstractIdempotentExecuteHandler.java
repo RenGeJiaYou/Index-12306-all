@@ -6,7 +6,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 /**
  * 抽象幂等执行处理器
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public abstract class AbstractIdempotentExecuteHandler implements IdempotentExecuteHandler{

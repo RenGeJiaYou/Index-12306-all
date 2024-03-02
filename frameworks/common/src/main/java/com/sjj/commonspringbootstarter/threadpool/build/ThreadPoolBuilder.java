@@ -3,7 +3,7 @@ package com.sjj.commonspringbootstarter.threadpool.build;
 /*
  * 线程池 Builder 类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import com.sjj.commonspringbootstarter.toolkit.Assert;

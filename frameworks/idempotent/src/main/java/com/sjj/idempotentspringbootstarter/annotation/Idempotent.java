@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 /**
  * 幂等注解
  *
- * @Author: Island_World
+ * @author: Island_World
  *
  */
 

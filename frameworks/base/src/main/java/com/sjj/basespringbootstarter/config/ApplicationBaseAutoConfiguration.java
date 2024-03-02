@@ -20,7 +20,7 @@ package com.sjj.basespringbootstarter.config;
 /*
  * 应用基础自动装配类，本 Starter 的对外接口，对外供应编写好的 Bean
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import com.sjj.basespringbootstarter.ApplicationContextHolder;

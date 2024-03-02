@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * 拒绝策略代理工具类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

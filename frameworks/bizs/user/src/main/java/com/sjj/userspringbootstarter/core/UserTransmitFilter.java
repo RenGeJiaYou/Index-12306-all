@@ -3,7 +3,7 @@ package com.sjj.userspringbootstarter.core;
 /*
  * 用户上下文拦截器，请求存在 token 时拦截
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import com.sjj.basespringbootstarter.constant.UserConstant;

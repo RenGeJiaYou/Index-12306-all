@@ -20,7 +20,7 @@ package com.sjj.basespringbootstarter.init;
 /*
  * 应用初始化后置处理器，防止 Spring 事件被多次执行
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import lombok.RequiredArgsConstructor;

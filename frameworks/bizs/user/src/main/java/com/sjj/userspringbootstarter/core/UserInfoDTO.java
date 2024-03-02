@@ -5,7 +5,7 @@ package com.sjj.userspringbootstarter.core;
  *
  * 只有 4 个必备字段：用户ID，用户名。用户实名，token
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import lombok.AllArgsConstructor;

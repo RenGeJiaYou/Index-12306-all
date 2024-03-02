@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * 重复消费异常
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 @RequiredArgsConstructor

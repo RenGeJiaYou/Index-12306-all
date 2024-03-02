@@ -3,7 +3,7 @@ package com.sjj.conventionspringbootstarter.errorcode;
 /*
  * 全局定义错误码
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public enum BaseErrorCode implements IErrorCode{

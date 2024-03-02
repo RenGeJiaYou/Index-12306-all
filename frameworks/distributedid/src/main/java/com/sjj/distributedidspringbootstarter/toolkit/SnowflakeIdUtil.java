@@ -3,7 +3,7 @@ package com.sjj.distributedidspringbootstarter.toolkit;
 /**
  * 分布式雪花 ID 生成器
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import com.sjj.distributedidspringbootstarter.core.snowflake.Snowflake;
@@ -12,7 +12,7 @@ import  com.sjj.distributedidspringbootstarter.handler.IdGeneratorManager;
 /**
  * 分布式雪花 ID 生成器
  *
- *  @Author Island_World
+ *  @author Island_World
  */
 public final class SnowflakeIdUtil {
 

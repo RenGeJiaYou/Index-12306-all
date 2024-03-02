@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 快速消费任务队列，继承自 LinkedBlockingQueue
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public class TaskQueue<R extends Runnable> extends LinkedBlockingQueue<Runnable> {

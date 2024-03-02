@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 /**
  * 雪花算法组成部分，通常用来反解析使用
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 @Data

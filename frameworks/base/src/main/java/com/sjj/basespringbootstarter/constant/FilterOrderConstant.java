@@ -19,7 +19,7 @@ package com.sjj.basespringbootstarter.constant;
 /*
  * 全局过滤器顺序执行常量类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public class FilterOrderConstant {

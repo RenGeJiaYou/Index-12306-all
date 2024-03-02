@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 快速消费线程池
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public class EagerThreadPoolExecutor extends ThreadPoolExecutor {

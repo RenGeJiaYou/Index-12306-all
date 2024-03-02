@@ -3,7 +3,7 @@ package com.sjj.idempotentspringbootstarter.enums;
 /**
  * 幂等类型枚举
  *
- * @Author: Island_World
+ * @author: Island_World
  */
 
 public enum IdempotentTypeEnum {

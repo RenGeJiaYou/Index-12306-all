@@ -3,7 +3,7 @@ package com.sjj.userspringbootstarter.core;
 /*
  * 用户上下文，用来存储一个线程局部变量：用户DTO
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import com.alibaba.ttl.TransmittableThreadLocal;

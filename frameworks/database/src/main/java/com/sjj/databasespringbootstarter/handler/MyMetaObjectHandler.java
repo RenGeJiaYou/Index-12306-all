@@ -11,7 +11,7 @@ import java.util.Date;
  * 为 BaseDo 的 createTime、updateTime、delFlag 字段自动填充
  * 注意，这两个方法只有在 BaseDo 对应的字段使用了 @TableField(fill = FieldFill.INSERT) 或 @TableField(fill = FieldFill.INSERT_UPDATE)注解时才会生效
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public class MyMetaObjectHandler implements MetaObjectHandler {

@@ -1,6 +1,6 @@
 package com.sjj.logspringbootstarter.annotation;
 /*
- * @Author: Island_World
+ * @author: Island_World
  *
  */
 

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Redis 生成雪花 ID
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 @Slf4j

@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * ID 生成器管理
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public class IdGeneratorManager {

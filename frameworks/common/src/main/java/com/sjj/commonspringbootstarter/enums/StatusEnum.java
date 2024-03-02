@@ -3,7 +3,7 @@ package com.sjj.commonspringbootstarter.enums;
 /**
  * 状态枚举
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public enum StatusEnum {

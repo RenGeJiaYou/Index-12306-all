@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 环境工具类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public class EnvironmentUtil {

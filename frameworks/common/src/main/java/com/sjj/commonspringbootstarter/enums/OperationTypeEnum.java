@@ -3,7 +3,7 @@ package com.sjj.commonspringbootstarter.enums;
 /**
  * 操作类型
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public enum OperationTypeEnum {

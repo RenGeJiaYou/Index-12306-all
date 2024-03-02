@@ -12,7 +12,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 /**
  * 幂等参数包装
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 @Data

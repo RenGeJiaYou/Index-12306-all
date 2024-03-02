@@ -23,7 +23,7 @@ import java.util.Optional;
  *
  * @within(com.sjj.logspringbootstarter.annotation.ILog) 表示所有在类级别上标注了 @ILog 注解的类中的所有方法都会被通知。
  * @annotation(com.sjj.logspringbootstarter.annotation.ILog) 表示所有在方法级别上标注了 @ILog 注解的方法都会被通知。
- * @Author Island_World
+ * @author Island_World
  */
 @Aspect("@within(com.sjj.logspringbootstarter.annotation.ILog) || @annotation(com.sjj.logspringbootstarter.annotation.ILog)")
 public class ILogPrintAspect {

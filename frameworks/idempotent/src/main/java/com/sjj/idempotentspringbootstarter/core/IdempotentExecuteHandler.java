@@ -1,5 +1,5 @@
 package com.sjj.idempotentspringbootstarter.core;/*
- * @Author: Island_World
+ * @author: Island_World
  *
  */
 
@@ -9,7 +9,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 /**
  * 幂等执行处理器
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public interface IdempotentExecuteHandler {

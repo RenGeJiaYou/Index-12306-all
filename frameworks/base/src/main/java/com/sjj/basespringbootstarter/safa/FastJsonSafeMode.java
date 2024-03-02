@@ -20,7 +20,7 @@ package com.sjj.basespringbootstarter.safa;
 /*
  * FastJson 安全模式，开启后将关闭类型隐式传递
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import org.springframework.beans.factory.InitializingBean;

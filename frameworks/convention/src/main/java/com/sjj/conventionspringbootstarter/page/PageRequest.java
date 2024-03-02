@@ -3,7 +3,7 @@ package com.sjj.conventionspringbootstarter.page;
 /*
  * 分页的请求对象
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import lombok.Data;

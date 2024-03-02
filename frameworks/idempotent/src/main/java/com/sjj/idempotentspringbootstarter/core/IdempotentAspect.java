@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 /**
  * 幂等注解 AOP 拦截器
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 @Aspect

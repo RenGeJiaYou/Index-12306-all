@@ -3,7 +3,7 @@ package com.sjj.idempotentspringbootstarter.enums;
 /**
  * 幂等验证场景枚举
  *
- * @Author: Island_World
+ * @author: Island_World
  *
  */
 

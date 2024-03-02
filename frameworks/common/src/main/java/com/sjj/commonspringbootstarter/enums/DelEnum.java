@@ -3,7 +3,7 @@ package com.sjj.commonspringbootstarter.enums;
 /**
  * 删除标记枚举
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public enum DelEnum {

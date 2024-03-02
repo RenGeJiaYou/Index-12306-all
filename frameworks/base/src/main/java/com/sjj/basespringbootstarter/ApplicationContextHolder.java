@@ -20,7 +20,7 @@ package com.sjj.basespringbootstarter;
 /*
  * 获取SpringBoot 管理的 Beans
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import org.springframework.beans.BeansException;

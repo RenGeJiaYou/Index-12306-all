@@ -5,7 +5,7 @@ package com.sjj.conventionspringbootstarter.page;
  * 为了满足各种各样的业务，应当是泛型类
  * 为了能够在网络间传输，应当实现序列化接口
  *
- * @Author Island_World
+ * @author Island_World
  *
  */
 

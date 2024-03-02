@@ -3,7 +3,7 @@ package com.sjj.designpatternspringbootstarter.chain;
 /*
  * 责任链抽象接口
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import org.springframework.core.Ordered;

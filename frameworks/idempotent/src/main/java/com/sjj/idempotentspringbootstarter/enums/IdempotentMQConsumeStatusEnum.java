@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * 幂等 MQ 消费状态枚举
  *
- * @Author: Island_World
+ * @author: Island_World
  *
  */
 

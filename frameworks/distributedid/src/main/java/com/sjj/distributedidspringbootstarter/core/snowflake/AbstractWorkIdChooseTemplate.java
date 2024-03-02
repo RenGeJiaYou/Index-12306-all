@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 /**
  * 雪花算法模板生成
  *
- * @Author Island_World
+ * @author Island_World
  */
 @Slf4j
 public abstract class AbstractWorkIdChooseTemplate {

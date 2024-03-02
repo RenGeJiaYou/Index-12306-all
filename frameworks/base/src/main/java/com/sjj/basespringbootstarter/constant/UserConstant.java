@@ -19,7 +19,7 @@ package com.sjj.basespringbootstarter.constant;
 /*
  * 定义全局用户变量,用于 JWT 校验
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public final class UserConstant {

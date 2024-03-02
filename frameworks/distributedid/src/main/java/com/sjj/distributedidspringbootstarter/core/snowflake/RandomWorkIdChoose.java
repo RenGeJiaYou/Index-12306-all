@@ -6,7 +6,7 @@ import org.springframework.beans.factory.InitializingBean;
 /**
  * 随机数后去雪花 WorkId
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 @Slf4j

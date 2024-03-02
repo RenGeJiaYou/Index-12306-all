@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * Log 子模块自动配置类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public class LogAutoConfiguration {

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
 /**
  * 分布式 ID 配置类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 @Import(ApplicationContextHolder.class)

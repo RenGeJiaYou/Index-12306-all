@@ -3,7 +3,7 @@ package com.sjj.webspringbootstarter;
 /*
  * 构造指定类型的 Result 对象
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import com.sjj.conventionspringbootstarter.errorcode.BaseErrorCode;

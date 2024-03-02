@@ -13,7 +13,7 @@ import java.util.Date;
 /**
  * 雪花码实体类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public class Snowflake implements Serializable, IdGenerator {

@@ -3,7 +3,7 @@ package com.sjj.databasespringbootstarter.toolkit;
 /*
  * 分页工具类，配合规约组件中封装的分页对象
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import com.baomidou.mybatisplus.core.metadata.IPage;

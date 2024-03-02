@@ -2,7 +2,7 @@ package com.sjj.designpatternspringbootstarter.config.builder;
 
 /*
  * 建造者模式
- * @Author: Island_World
+ * @author: Island_World
  *
  */
 

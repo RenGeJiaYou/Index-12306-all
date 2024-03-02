@@ -3,7 +3,7 @@ package com.sjj.userspringbootstarter.toolkit;
 /*
  * JWT 工具类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import com.alibaba.fastjson2.JSON;

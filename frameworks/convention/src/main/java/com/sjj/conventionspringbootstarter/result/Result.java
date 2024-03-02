@@ -8,7 +8,7 @@ import java.io.Serializable;
 /*
  * 统一返回结果类
  *
- * @Author Island_World
+ * @author Island_World
  */
 @Data
 @Accessors(chain = true)

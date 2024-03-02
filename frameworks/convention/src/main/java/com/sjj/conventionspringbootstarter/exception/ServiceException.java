@@ -3,7 +3,7 @@ package com.sjj.conventionspringbootstarter.exception;
 /*
  * 服务端异常
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import com.sjj.conventionspringbootstarter.errorcode.BaseErrorCode;

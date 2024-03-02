@@ -8,7 +8,7 @@ import lombok.SneakyThrows;
  * 之所以封装一层，是为了用  @SneakyThrows 自动生成try-catch 捕获 InterruptedException 异常
  * 起到简化调用代码的作用
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 public class ThreadUtil {

@@ -3,7 +3,7 @@ package com.sjj.commonspringbootstarter.threadpool.build;
 /*
  * 线程工厂方法类
  *
- * @Author Island_World
+ * @author Island_World
  */
 
 import com.sjj.designpatternspringbootstarter.config.builder.Builder;
