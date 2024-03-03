@@ -29,7 +29,7 @@ public final class CacheUtil {
     }
 
     /**
-     * 判断结果是否为空或空的字符串
+     * 判断结果是否为空或空串
      * @param cacheVal
      * @return
      */

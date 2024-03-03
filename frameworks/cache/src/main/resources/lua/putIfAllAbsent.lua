@@ -10,6 +10,6 @@ end
 -- 2. 遍历所有的KEYS，设置键 v 为 default ，并设置过期时间为 ARGV[1]
 for i, v in ipairs(KEYS) do
     redis.call("set",v,"default");
-    redis.call("pexpire",v,ARGV[1]); --ARGV 是一个特殊的变量，它包含了所有传入脚本的参数
+    redis.call("pexpire",v,ARGV[1]); --ARGV 是一个特殊的变量，它包含了所有传入脚本的参数;从 [1] 开始
 end
 return true;

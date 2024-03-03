@@ -173,8 +173,9 @@ public interface DistributedCache extends Cache {
     void safePut(@NotBlank String key,Object value,long timeout,RBloomFilter<String> bloomFilter);
 
     /**
-     * 放入缓存，自定义超时时间，并将 key 加入布隆过滤器。极大概率通过此方式防止：缓存穿透、缓存击穿、缓存雪崩
-     * 需要客户端传递布隆过滤器，适用于被外部直接调用的接口
+     * 放入缓存，自定义超时时间，并将 key 加入布隆过滤器。极大概率通过此方式防止：缓存穿透、缓存击穿、缓存雪崩<p>
+     * 需要客户端传递布隆过滤器，适用于被外部直接调用的接口<p>
+     * 布隆过滤器是一个内存中的 Java 对象
      *
      * @param key
      * @param value
@@ -189,5 +190,5 @@ public interface DistributedCache extends Cache {
      *
      * @param keys
      * */
-    Long countExistKeys(@NotNull String... keys);
+    Long countExistingKeys(@NotNull String... keys);
 }

@@ -12,7 +12,7 @@ import java.util.Collection;
 
 public interface Cache {
     /**
-     * 获取缓存
+     * 获取缓存,并返回 clazz 类型的实例对象
      * */
     <T> T get(@NotBlank String key, Class<T> clazz);
 
