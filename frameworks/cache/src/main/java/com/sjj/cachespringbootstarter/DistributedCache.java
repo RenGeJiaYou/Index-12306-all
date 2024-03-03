@@ -152,7 +152,7 @@ public interface DistributedCache extends Cache {
     void put(@NotBlank String key,Object value,long timeout);
 
     /**
-     * 放入缓存，自定义超时时间
+     * 讲数据转换为 JSON 字符串后放入缓存，自定义超时时间
      *
      * @param key
      * @param value

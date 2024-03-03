@@ -1,5 +1,6 @@
 package com.sjj.cachespringbootstarter.config;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -7,6 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *
  * @author Island_World
  */
+@Data
 @ConfigurationProperties(prefix = BloomFilterPenetrateProperties.PREFIX)
 public class BloomFilterPenetrateProperties {
     public static final String PREFIX = "framework.cache.redis.bloom-filter.default";
