@@ -98,7 +98,7 @@ public class StringRedisTemplateProxy implements DistributedCache {
     @Override
     public <T> T get(String key, Class<T> clazz, CacheLoader<T> cacheLoader, long timeout) {
 
-        return null;
+        return get(key, clazz, cacheLoader, timeout, redisProperties.getValueTimeUnit());
     }
 
 
