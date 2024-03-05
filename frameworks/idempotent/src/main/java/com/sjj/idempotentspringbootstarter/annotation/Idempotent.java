@@ -18,6 +18,7 @@ import java.lang.annotation.*;
 public @interface Idempotent {
     /**
      * 幂等Key，只有在 {@link Idempotent#type()} 为 {@link IdempotentTypeEnum#SPEL} 时生效
+     * 用来接收 SpEL 表达式
      */
     String key() default "";
 

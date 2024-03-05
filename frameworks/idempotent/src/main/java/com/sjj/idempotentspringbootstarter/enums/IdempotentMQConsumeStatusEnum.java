@@ -16,7 +16,7 @@ public enum IdempotentMQConsumeStatusEnum {
     CONSUMING("0"),
 
     // 消费成功
-    COMSUMED("1");
+    CONSUMES("1");
 
     @Getter
     private final String code;
