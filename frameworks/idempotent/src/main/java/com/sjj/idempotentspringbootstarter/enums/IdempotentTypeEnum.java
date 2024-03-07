@@ -13,5 +13,4 @@ public enum IdempotentTypeEnum {
     PARAM,
     // 基于 SpEL 表达式方式验证
     SPEL
-
 }

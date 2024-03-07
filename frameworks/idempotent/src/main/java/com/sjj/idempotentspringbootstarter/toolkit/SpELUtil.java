@@ -18,8 +18,15 @@ import java.util.Optional;
  */
 
 public class SpELUtil {
+    /**
+     * 首先判断是不是 SpEL 表达式，是则直接返回，不是则解析成 SpEL 再返回
+     *
+     * @param spel
+     * @param method
+     * @param contextObj
+     * @return SpEL 表达式
+     */
     public static Object parseKey(String spel,Method method,Object[] contextObj){
-        // 用来判断是否是 SpEL 表达式
         ArrayList<String> spelFlag = Lists.newArrayList("#", "T(");
         Optional<String> optional = spelFlag.stream().filter(spel::contains).findFirst();
         if(optional.isPresent()){

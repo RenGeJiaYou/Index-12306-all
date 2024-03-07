@@ -45,6 +45,7 @@ public final class IdempotentAspect {
             throw e;
         }
         finally{
+            // 清空 Context
             IdempotentContext.clean();
         }
         return resultObj;

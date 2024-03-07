@@ -50,7 +50,4 @@ public @interface Idempotent {
      * {@link IdempotentSceneEnum#MQ} and {@link IdempotentTypeEnum#SPEL} 时生效
      */
     long keyTimeout() default 3600L;
-
-
-
 }

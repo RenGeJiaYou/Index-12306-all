@@ -30,36 +30,36 @@ public class IdempotentParamExecuteHandler extends AbstractIdempotentExecuteHand
 
     /**
      * @return 获取当前线程上下文 ServletPath
-     *
+     * <p>
      * 该部分指向 Servlet 的路径。这个路径是相对于当前 Servlet 上下文的路径，不包括任何额外的路径信息或查询字符串。<p>
      * 例如，如果 URL 是 http://localhost:8080/myapp/myservlet`，那么getServletPath()将返回 `/myservlet`。
      */
-    private String getServletPath(){
-        ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+    private String getServletPath() {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         return attributes.getRequest().getServletPath();
     }
 
     /**
      * @return 当前操作用户 ID
      */
-    private String getCurrentUserId(){
+    private String getCurrentUserId() {
         String userId = UserContext.getUserId();
-        if (StrUtil.isBlank(userId)){
+        if (StrUtil.isBlank(userId)) {
             throw new ClientException("用户ID获取失败，请登录");
         }
         return userId;
     }
 
     /**
-     * @Return 被注解方法的参数的 MD5 值
-     * */
-    private String calcArgsMD5(ProceedingJoinPoint joinPoint){
+     * @Return 被注解方法的形参列表的 MD5 值
+     */
+    private String calcArgsMD5(ProceedingJoinPoint joinPoint) {
         return DigestUtil.md5Hex(JSON.toJSONString(joinPoint.getArgs()));
     }
 
     /**
      * @Return 构造幂等验证过程中所需要的参数包装器
-     * */
+     */
     @Override
     public IdempotentParamWrapper buildWrapper(ProceedingJoinPoint joinPoint) {
         String lockKey = String.format("idempotent:path:%s:currentUserId:%s:md5:%s",
@@ -72,11 +72,11 @@ public class IdempotentParamExecuteHandler extends AbstractIdempotentExecuteHand
 
     /**
      * handler() 中加可重入锁
-     * */
+     */
     @Override
     public void handler(IdempotentParamWrapper wrapper) {
         RLock lock = redissonClient.getLock(wrapper.getLockKey());
-        if (!lock.tryLock()){
+        if (!lock.tryLock()) {
             throw new ClientException(wrapper.getIdempotent().message());
         }
         IdempotentContext.put(Lock, lock);
@@ -85,14 +85,14 @@ public class IdempotentParamExecuteHandler extends AbstractIdempotentExecuteHand
 
     /**
      * postProcessing() 中释放可重入锁
-     * */
+     */
     @Override
     public void postProcessing() {
         RLock lock = null;
-        try{
+        try {
             lock = (RLock) IdempotentContext.getKey(Lock);
         } finally {
-            if (lock != null){
+            if (lock != null) {
                 lock.unlock();
             }
         }

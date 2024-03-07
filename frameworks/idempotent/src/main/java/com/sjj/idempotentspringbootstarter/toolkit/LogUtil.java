@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 public class LogUtil {
     /**
-     * 获取 Logger
+     * 为被注解的类创建一个专属 Logger，将专门记录该类产生的日志
      */
     public static Logger getLog(ProceedingJoinPoint joinPoint) {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();

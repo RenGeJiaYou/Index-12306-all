@@ -68,7 +68,7 @@ public class IdempotentTokenExecuteHandler extends AbstractIdempotentExecuteHand
      * 先根据配置文件中的前缀和过期时间创建 token，没有则采用默认值
      * 将 token 存到 redis 中并返回
      *
-     * @return
+     * @return 根据配置文件中的前缀和过期时间创建的 token
      */
     @Override
     public String createToken() {

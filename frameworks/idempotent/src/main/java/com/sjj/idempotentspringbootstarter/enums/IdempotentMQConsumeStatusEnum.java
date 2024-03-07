@@ -16,13 +16,13 @@ public enum IdempotentMQConsumeStatusEnum {
     CONSUMING("0"),
 
     // 消费成功
-    CONSUMES("1");
+    CONSUMED("1");
 
     @Getter
     private final String code;
 
     /**
-     * 如果消费状态等于消费中，返回失败
+     * 如果消费状态等于 CONSUMING，返回失败
      *
      * @param consumeStatus 消费状态
      * @return 是否消费失败

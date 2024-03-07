@@ -30,7 +30,7 @@ public interface IdempotentExecuteHandler {
     void execute(ProceedingJoinPoint joinPoint, Idempotent idempotent);
 
     /**
-     * 异常处理
+     * 异常处理,需要删除幂等标识方便下次 RocketMQ 再次通过重试队列投递
      */
     default void exceptionProcessing(){}
 

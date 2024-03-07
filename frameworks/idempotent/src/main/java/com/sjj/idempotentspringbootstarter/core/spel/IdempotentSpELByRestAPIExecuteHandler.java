@@ -19,8 +19,8 @@ import org.redisson.api.RedissonClient;
  * @author Island_World
  */
 @RequiredArgsConstructor
-public class IdempotentSpELByRestAPIExecuteHandler extends AbstractIdempotentExecuteHandler implements IdempotentSpELService{
-    private final RedissonClient redisson;
+public class IdempotentSpELByRestAPIExecuteHandler extends AbstractIdempotentExecuteHandler implements IdempotentSpELService {
+    private final RedissonClient redissonClient;
     private final static String LOCK = "lock:spEL:restAPI";
 
 
@@ -36,9 +36,9 @@ public class IdempotentSpELByRestAPIExecuteHandler extends AbstractIdempotentExe
         Idempotent idempotent = IdempotentAspect.getIdempotent(joinPoint);
         String key = (String) SpELUtil.parseKey(
                 idempotent.key(),
-                ((MethodSignature)joinPoint.getSignature()).getMethod(),
+                ((MethodSignature) joinPoint.getSignature()).getMethod(),
                 joinPoint.getArgs());
-        // 无需加入 idempotent 是由于 joinPoint 将提供该值
+        // 无需加入 idempotent 是由于抽象类的 execute() 将最后完成这一步
         return IdempotentParamWrapper.builder().lockKey(key).joinPoint(joinPoint).build();
     }
 
@@ -50,8 +50,8 @@ public class IdempotentSpELByRestAPIExecuteHandler extends AbstractIdempotentExe
     @Override
     public void handler(IdempotentParamWrapper wrapper) {
         String uniqueKey = wrapper.getIdempotent().uniqueKeyPrefix() + wrapper.getLockKey(); // 生成唯一键
-        RLock lock = redisson.getLock(uniqueKey);// 获取锁
-        if(!lock.tryLock()){
+        RLock lock = redissonClient.getLock(uniqueKey);// 获取锁
+        if (!lock.tryLock()) {
             throw new RuntimeException(wrapper.getIdempotent().message());
         }
         IdempotentContext.put(LOCK, lock);
@@ -63,10 +63,10 @@ public class IdempotentSpELByRestAPIExecuteHandler extends AbstractIdempotentExe
     @Override
     public void exceptionProcessing() {
         RLock lock = null;
-        try{
+        try {
             lock = (RLock) IdempotentContext.getKey(LOCK);
-        }finally {
-            if (lock!=null){
+        } finally {
+            if (lock != null) {
                 lock.unlock();
             }
         }
@@ -78,10 +78,10 @@ public class IdempotentSpELByRestAPIExecuteHandler extends AbstractIdempotentExe
     @Override
     public void postProcessing() {
         RLock lock = null;
-        try{
+        try {
             lock = (RLock) IdempotentContext.getKey(LOCK);
-        }finally {
-            if (lock!=null){
+        } finally {
+            if (lock != null) {
                 lock.unlock();
             }
         }

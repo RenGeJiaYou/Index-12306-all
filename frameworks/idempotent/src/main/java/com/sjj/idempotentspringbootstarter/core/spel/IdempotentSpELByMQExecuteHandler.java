@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  * @author Island_World
  */
 @RequiredArgsConstructor
-public class IdempotentSpELByMQExecuteHandler extends AbstractIdempotentExecuteHandler implements IdempotentSpELService{
+public class IdempotentSpELByMQExecuteHandler extends AbstractIdempotentExecuteHandler implements IdempotentSpELService {
     private final DistributedCache distributedCache;
 
     private final static int TIMEOUT = 600;
@@ -39,7 +39,7 @@ public class IdempotentSpELByMQExecuteHandler extends AbstractIdempotentExecuteH
         Idempotent idempotent = IdempotentAspect.getIdempotent(joinPoint);
         String key = (String) SpELUtil.parseKey(
                 idempotent.key(),
-                ((MethodSignature)joinPoint.getSignature()).getMethod(),
+                ((MethodSignature) joinPoint.getSignature()).getMethod(),
                 joinPoint.getArgs());
         return IdempotentParamWrapper.builder().lockKey(key).joinPoint(joinPoint).build();
     }
@@ -55,21 +55,26 @@ public class IdempotentSpELByMQExecuteHandler extends AbstractIdempotentExecuteH
         Boolean setIfAbsent = ((StringRedisTemplate) distributedCache.getInstance())
                 .opsForValue()
                 .setIfAbsent(uniqueKey, IdempotentMQConsumeStatusEnum.CONSUMING.getCode(), TIMEOUT, TimeUnit.SECONDS);
-        if (setIfAbsent!=null&& !setIfAbsent){
+        /** 无法添加，说明 Redis 中有同名的Key ->
+         *  之前已有进程占有该锁且正在消费
+         *  且之前进程和本进程处理的是相同的重复请求，否则不会 key 冲突 ->
+         *  本进程此时应当幂等处理该请求，也就是报个异常
+         * */
+        if (setIfAbsent != null && !setIfAbsent) {
             String consumeStatus = distributedCache.get(uniqueKey, String.class);
             boolean error = IdempotentMQConsumeStatusEnum.isError(consumeStatus);
             LogUtil.getLog(wrapper.getJoinPoint()).warn(
                     "[{}] MQ repeated consumption, {}.",
                     uniqueKey,
-                    error ?  "Wait for the client to delay consumption"
-                            :"Status is completed");
+                    error ? "Wait for the client to delay consumption"
+                            : "Status is completed");
             throw new RepeatConsumptionException(error);
         }
         IdempotentContext.put(WRAPPER, wrapper);
     }
 
     /**
-     * 异常处理
+     * 异常处理，需要释放锁，具体来说，是要按 key 删除 Redis 中的对应项
      */
     @Override
     public void exceptionProcessing() {
@@ -97,7 +102,7 @@ public class IdempotentSpELByMQExecuteHandler extends AbstractIdempotentExecuteH
             try {
                 distributedCache.put(
                         uniqueKey,
-                        IdempotentMQConsumeStatusEnum.CONSUMES.getCode(),
+                        IdempotentMQConsumeStatusEnum.CONSUMED.getCode(),// ※
                         idempotent.keyTimeout(),
                         TimeUnit.SECONDS);
             } catch (Throwable ex) {
