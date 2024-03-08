@@ -7,6 +7,7 @@ import com.sjj.idempotentspringbootstarter.core.param.IdempotentParamService;
 import com.sjj.idempotentspringbootstarter.core.spel.IdempotentSpELByMQExecuteHandler;
 import com.sjj.idempotentspringbootstarter.core.spel.IdempotentSpELByRestAPIExecuteHandler;
 import com.sjj.idempotentspringbootstarter.core.spel.IdempotentSpELService;
+import com.sjj.idempotentspringbootstarter.core.token.IdempotentTokenController;
 import com.sjj.idempotentspringbootstarter.core.token.IdempotentTokenExecuteHandler;
 import com.sjj.idempotentspringbootstarter.core.token.IdempotentTokenService;
 import org.redisson.api.RedissonClient;
@@ -46,6 +47,14 @@ public class IdempotentAutoConfiguration {
     public IdempotentTokenService idempotentTokenExecuteHandler(DistributedCache distributedCache,
                                                                 IdempotentProperties idempotentProperties) {
         return new IdempotentTokenExecuteHandler(distributedCache, idempotentProperties);
+    }
+
+    /**
+     * 申请幂等 Token 控制器，基于 RestAPI 场景
+     */
+    @Bean
+    public IdempotentTokenController idempotentTokenController(IdempotentTokenService idempotentTokenService) {
+        return new IdempotentTokenController(idempotentTokenService);
     }
 
     /**
