@@ -10,7 +10,7 @@
     <artifactId>base-spring-boot-starter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>base-spring-boot-starter</name>
-    <description>basespring-boot-starter</description>
+    <description>base-spring-boot-starter</description>
     <properties>
         <java.version>17</java.version>
     </properties>
