@@ -22,6 +22,7 @@ import com.sjj.cachespringbootstarter.StringRedisTemplateProxy;
 import lombok.AllArgsConstructor;
 import org.redisson.api.RBloomFilter;
 import org.redisson.api.RedissonClient;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -46,6 +47,7 @@ public class CacheAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnProperty(prefix = BloomFilterPenetrateProperties.PREFIX,name = "enabled",havingValue = "true")
     public RBloomFilter<String> cachePenetrationBloomFilter(RedissonClient redissonClient,BloomFilterPenetrateProperties bloomFilterPenetrateProperties){
         RBloomFilter<String> bloomFilter = redissonClient.getBloomFilter(bloomFilterPenetrateProperties.getName());
         bloomFilter.tryInit(bloomFilterPenetrateProperties.getExpectedInsertions(),bloomFilterPenetrateProperties.getFalseProbability());

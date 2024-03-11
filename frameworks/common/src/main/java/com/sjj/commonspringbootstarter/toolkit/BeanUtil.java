@@ -96,13 +96,13 @@ public class BeanUtil {
 
 
     /**
-     * 复制单个对象
+     * 复制 source 实例中的部分属性，构造一个 clazz 类型的实例
      *
      * @param source 数据对象
      * @param clazz  复制目标类型
-     * @param <T>
-     * @param <S>
-     * @return 转换后对象
+     * @param <S> 源类型
+     * @param <T> 目标类型
+     * @return 目标类型的一个实例
      */
     public static <T,S> T convert(S source,Class<T> clazz){
         return Optional.ofNullable(source)
