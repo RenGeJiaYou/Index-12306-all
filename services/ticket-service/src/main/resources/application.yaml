@@ -1,0 +1,47 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: index12306-ticket-service
+
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    # characterEncoding=utf-8：设置客户端和数据库之间字符串数据以 UTF-8 编码传输
+    # zeroDateTimeBehavior=convertToNull：当数据库中的日期时间值为零（0000-00-00 00:00:00）时，驱动程序将这些零日期时间值转换为 null。
+    # transformedBitIsBoolean=true：驱动程序将 BIT 数据类型转换为 Java 的 Boolean 类型。
+    # serverTimezone=GMT%2B8：时区为 GMT+8 时区。
+    url: jdbc:mysql://127.0.0.1:3306/12306?characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8
+    hikari:
+      connection-test-query: select 1
+      connection-timeout: 20000
+      idle-timeout: 300000
+      maximum-pool-size: 5
+      minimum-idle: 5
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 123456
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: delFlag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+framework:
+  fastjson:
+    safa-mode: true
+
+  cache:
+    redis:
+      prefix: '${spring.application.name}:'
+      value-timeout: 50000
