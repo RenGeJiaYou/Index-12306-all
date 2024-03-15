@@ -2,6 +2,7 @@ package com.sjj.ticketservice.dto.req;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -11,17 +12,17 @@ import java.util.Date;
  *
  * @author Island_World
  */
-//@Data
+@Data
 public class TicketPageQueryReqDTO extends Page {
     /**
-     * 出发地
+     * 出发城市
      */
-    private String fromStation;
+    private String fromCity;
 
     /**
-     * 目的地
+     * 目的城市
      */
-    private String toStation;
+    private String toCity;
 
     /**
      * 出发日期
@@ -32,10 +33,10 @@ public class TicketPageQueryReqDTO extends Page {
     /**
      * 出发站点
      */
-    private String departure;
+    private String departureStation;
 
     /**
      * 到达站点
      */
-    private String arrival;
+    private String arrivalStation;
 }

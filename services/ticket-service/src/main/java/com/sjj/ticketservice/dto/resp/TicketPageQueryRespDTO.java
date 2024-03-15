@@ -25,6 +25,12 @@ public class TicketPageQueryRespDTO{
     private Date departureTime;
 
     /**
+     * 到达时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
+    private Date arrivalTime;
+
+    /**
      * 历时
      */
     private String duration;

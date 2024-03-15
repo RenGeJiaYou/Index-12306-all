@@ -22,7 +22,7 @@ public class BulletTrainDTO {
     /**
      * 商务座价格
      */
-    private Float businessSeatPrice;
+    private Integer businessSeatPrice;
 
     /**
      * 一等座数量
@@ -37,7 +37,7 @@ public class BulletTrainDTO {
     /**
      * 一等座价格
      */
-    private Float firstSeatPrice;
+    private Integer firstSeatPrice;
 
     /**
      * 二等座数量
@@ -52,5 +52,5 @@ public class BulletTrainDTO {
     /**
      * 二等座价格
      */
-    private Float secondSeatPrice;
+    private Integer secondSeatPrice;
 }

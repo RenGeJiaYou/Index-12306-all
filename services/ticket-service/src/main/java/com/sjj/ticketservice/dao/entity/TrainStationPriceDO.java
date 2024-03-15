@@ -22,7 +22,7 @@ public class TrainStationPriceDO {
     private Long trainId;
 
     /**
-     * 座位类型
+     * 座位类型。0：商务座；1：一等座；2：二等座
      */
     private Integer seatType;
 
