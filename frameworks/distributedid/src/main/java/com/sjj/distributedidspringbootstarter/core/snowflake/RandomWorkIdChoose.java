@@ -40,7 +40,7 @@ public class RandomWorkIdChoose extends AbstractWorkIdChooseTemplate implements 
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        chooseWorkId();
+        chooseAndInit();
     }
 
 

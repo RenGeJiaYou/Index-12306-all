@@ -45,3 +45,8 @@ framework:
     redis:
       prefix: '${spring.application.name}:'
       value-timeout: 50000
+
+logging:
+  level:
+    root: WARN
+    com.sjj.ticketservice: DEBUG

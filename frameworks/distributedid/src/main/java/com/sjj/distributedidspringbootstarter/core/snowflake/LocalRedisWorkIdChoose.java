@@ -67,6 +67,6 @@ public class LocalRedisWorkIdChoose extends AbstractWorkIdChooseTemplate impleme
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        chooseWorkId();
+        chooseAndInit();
     }
 }

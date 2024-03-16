@@ -31,8 +31,7 @@ import org.springframework.beans.factory.annotation.Value;
 public abstract class AbstractWorkIdChooseTemplate {
 
     /**
-     * 是否使用 {@link SystemClock} 获取当前时间戳
-     * <p>
+     * 是否使用 {@link SystemClock} 获取当前时间戳<p>
      * 该注解会搜索 Spring 配置文件，未定义就返回空
      */
     @Value("${framework.distributed.id.snowflake.is-use-system-clock:false}")

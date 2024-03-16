@@ -52,13 +52,13 @@ public class TicketServiceImpl implements TicketService {
                     .lambdaQuery(TrainDO.class)
                     .eq(TrainDO::getId, each.getTrainId());
             // 2.依次根据 t_train_station_relation 每条记录中的外键 train_id
-            // 去 t_train 里查找车次号，并存到当前 RespsonseDTO 实例中
+            // 去 t_train 里查找车次号，并存到当前 ResponseDTO 实例中
             var trainDO = trainMapper.selectOne(trainQueryWrapper);
             var result = new TicketPageQueryRespDTO();
             result.setTrainNumber(trainDO.getTrainNumber());
             result.setDepartureTime(each.getDepartureTime());
             result.setDuration(DateUtil.calculateHourDifference(each.getDepartureTime(), each.getArrivalTime()));
-            result.setArrivalTime(trainDO.getArrivalTime());
+            result.setArrivalTime(each.getArrivalTime());
             result.setDeparture(each.getDeparture());
             result.setArrival(each.getArrival());
 

@@ -1,6 +1,7 @@
 package com.sjj.ticketservice.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.sjj.databasespringbootstarter.base.BaseDO;
 import lombok.Data;
 
 /**
@@ -10,7 +11,7 @@ import lombok.Data;
  */
 @Data
 @TableName("t_train_station_price")
-public class TrainStationPriceDO {
+public class TrainStationPriceDO extends BaseDO {
     /**
      * id
      */
