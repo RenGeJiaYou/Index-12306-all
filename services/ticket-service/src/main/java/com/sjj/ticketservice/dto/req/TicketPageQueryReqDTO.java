@@ -1,7 +1,7 @@
 package com.sjj.ticketservice.dto.req;
 
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sjj.conventionspringbootstarter.page.PageRequest;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Island_World
  */
 @Data
-public class TicketPageQueryReqDTO extends Page {
+public class TicketPageQueryReqDTO extends PageRequest {
     /**
      * 出发城市
      */

@@ -5,7 +5,7 @@ import com.sjj.databasespringbootstarter.base.BaseDO;
 import lombok.Data;
 
 /**
- * 车站实体类
+ * 车站实体类，所有的站点记录存放在 t_station
  *
  * @author Island_World
  */

@@ -18,7 +18,7 @@
 package com.sjj.commonspringbootstarter.toolkit;
 
 /*
- * 对象属性复制工具类
+ * 对象属性复制工具类，用于 DTO,DO,ResponseDTO,RequestDTO 相互转换的场景
  *
  * @author Island_World
  */
@@ -38,8 +38,8 @@ import static com.github.dozermapper.core.loader.api.TypeMappingOptions.mapNull;
 public class BeanUtil {
     protected static Mapper BEAN_MAPPER_BUILDER;
 
-/*     static{} 是「静态初始化块」，用于初始化静态变量。
-     在类加载时执行且只执行一次，并且在任何其他静态方法、静态块和构造函数之前执行。*/
+    /*     static{} 是「静态初始化块」，用于初始化静态变量。
+         在类加载时执行且只执行一次，并且在任何其他静态方法、静态块和构造函数之前执行。*/
     static {
         BEAN_MAPPER_BUILDER = DozerBeanMapperBuilder.buildDefault();
     }
@@ -53,10 +53,9 @@ public class BeanUtil {
      * @param <S>
      * @return 转换后对象
      */
-    public static <T,S> T convert(S source,T target){
+    public static <T, S> T convert(S source, T target) {
         Optional.ofNullable(source)
-                .ifPresent(each->BEAN_MAPPER_BUILDER.map(each,target));
-
+                .ifPresent(each -> BEAN_MAPPER_BUILDER.map(each, target));
         return target;
     }
 
@@ -66,15 +65,15 @@ public class BeanUtil {
      * @param source 数据源
      * @param target 指向源
      */
-    public static void convertIgnoreNullAndBlank(Object source,Object target) {
+    public static void convertIgnoreNullAndBlank(Object source, Object target) {
         DozerBeanMapperBuilder dozerBeanMapperBuilder = DozerBeanMapperBuilder.create();
         Mapper mapper = dozerBeanMapperBuilder.withMappingBuilders(new BeanMappingBuilder() {
             @Override
             protected void configure() {
-                mapping(source.getClass(), target.getClass(),mapNull(false),mapEmptyString(false));
+                mapping(source.getClass(), target.getClass(), mapNull(false), mapEmptyString(false));
             }
         }).build();
-        mapper.map(source,target);
+        mapper.map(source, target);
     }
 
     /**
@@ -83,15 +82,15 @@ public class BeanUtil {
      * @param source 数据源
      * @param target 指向源
      */
-    public static void convertIgnoreNull(Object source,Object target) {
+    public static void convertIgnoreNull(Object source, Object target) {
         DozerBeanMapperBuilder dozerBeanMapperBuilder = DozerBeanMapperBuilder.create();
         Mapper mapper = dozerBeanMapperBuilder.withMappingBuilders(new BeanMappingBuilder() {
             @Override
             protected void configure() {
-                mapping(source.getClass(), target.getClass(),mapNull(false));
+                mapping(source.getClass(), target.getClass(), mapNull(false));
             }
         }).build();
-        mapper.map(source,target);
+        mapper.map(source, target);
     }
 
 
@@ -100,13 +99,13 @@ public class BeanUtil {
      *
      * @param source 数据对象
      * @param clazz  复制目标类型
-     * @param <S> 源类型
-     * @param <T> 目标类型
+     * @param <S>    源类型
+     * @param <T>    目标类型
      * @return 目标类型的一个实例
      */
-    public static <T,S> T convert(S source,Class<T> clazz){
+    public static <T, S> T convert(S source, Class<T> clazz) {
         return Optional.ofNullable(source)
-                .map(each->BEAN_MAPPER_BUILDER.map(each,clazz))
+                .map(each -> BEAN_MAPPER_BUILDER.map(each, clazz))
                 .orElse(null);
     }
 
@@ -119,15 +118,14 @@ public class BeanUtil {
      * @param <S>
      * @return 转换后对象集合
      */
-    public static<T,S> List<T> convert(List<S> sources, Class<T> clazz){
-     return Optional.ofNullable(sources)
-             .map(each->{
-                 List<T> targetList = new ArrayList<>(each.size());
-                 each.stream()
-                         .forEach(item -> targetList.add(BEAN_MAPPER_BUILDER.map(item,clazz)));
-                 return targetList;
-             })
-             .orElse(null);
+    public static <T, S> List<T> convert(List<S> sources, Class<T> clazz) {
+        return Optional.ofNullable(sources)
+                .map(each -> {
+                    List<T> targetList = new ArrayList<>(each.size());
+                    each.forEach(item -> targetList.add(BEAN_MAPPER_BUILDER.map(item, clazz)));
+                    return targetList;
+                })
+                .orElse(null);
     }
 
     /**
@@ -139,12 +137,11 @@ public class BeanUtil {
      * @param <S>
      * @return 转换后对象集合
      */
-    public static<T,S> Set<T> convert(Set<S> sources, Class<T> clazz){
+    public static <T, S> Set<T> convert(Set<S> sources, Class<T> clazz) {
         return Optional.ofNullable(sources)
-                .map(each->{
+                .map(each -> {
                     Set<T> targetList = new HashSet<>(each.size());
-                    each.stream()
-                            .forEach(item -> targetList.add(BEAN_MAPPER_BUILDER.map(item,clazz)));
+                    each.forEach(item -> targetList.add(BEAN_MAPPER_BUILDER.map(item, clazz)));
                     return targetList;
                 })
                 .orElse(null);
@@ -159,13 +156,13 @@ public class BeanUtil {
      * @param <S>
      * @return 转换后对象集合
      */
-    public static<T,S> T[] convert(S[] sources, Class<T> clazz){
+    public static <T, S> T[] convert(S[] sources, Class<T> clazz) {
         return Optional.ofNullable(sources)
-                .map(each->{
+                .map(each -> {
                     @SuppressWarnings("unchecked")
-                    T[] targetList = (T[])Array.newInstance(clazz,sources.length);
+                    T[] targetList = (T[]) Array.newInstance(clazz, sources.length);
                     for (int i = 0; i < targetList.length; i++) {
-                        targetList[i] = BEAN_MAPPER_BUILDER.map(sources[i],clazz);
+                        targetList[i] = BEAN_MAPPER_BUILDER.map(sources[i], clazz);
                     }
                     return targetList;
                 })

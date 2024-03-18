@@ -21,13 +21,13 @@ public class TicketPageQueryRespDTO{
     /**
      * 出发时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
+    @JsonFormat(pattern = "HH:mm", timezone = "GMT+8")
     private Date departureTime;
 
     /**
      * 到达时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
+    @JsonFormat(pattern = "HH:mm", timezone = "GMT+8")
     private Date arrivalTime;
 
     /**
@@ -44,6 +44,17 @@ public class TicketPageQueryRespDTO{
      * 到达站点
      */
     private String arrival;
+
+    /**
+     * 始发站标识
+     */
+    private Boolean departureFlag;
+
+    /**
+     * 终点站标识
+     */
+    private Boolean arrivalFlag;
+
 
     /**
      * 高铁属性

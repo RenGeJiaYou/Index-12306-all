@@ -1,6 +1,6 @@
 package com.sjj.ticketservice.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.sjj.conventionspringbootstarter.page.PageResponse;
 import com.sjj.ticketservice.dto.req.TicketPageQueryReqDTO;
 import com.sjj.ticketservice.dto.resp.TicketPageQueryRespDTO;
 
@@ -14,5 +14,5 @@ public interface TicketService {
     /**
      * 按照条件分页查询余票
      */
-    IPage<TicketPageQueryRespDTO> pageListTicketQuery(TicketPageQueryReqDTO req);
+    PageResponse<TicketPageQueryRespDTO> pageListTicketQuery(TicketPageQueryReqDTO req);
 }

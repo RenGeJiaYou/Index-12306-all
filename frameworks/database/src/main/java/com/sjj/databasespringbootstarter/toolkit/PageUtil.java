@@ -99,10 +99,12 @@ public class PageUtil {
      * @return PageResponse
      */
     public static <TARGET, ORIGINAL> PageResponse<TARGET> convert(IPage<ORIGINAL> iPage, Function<? super ORIGINAL, ? extends TARGET> mapper) {
-        // 对本 iPage 实例持有的分页数据进行转换，要求入参是自定义的 mapper 函数。转换完后原地返回实例
-        List<TARGET> targetList = iPage.getRecords().stream()
+        // 1. 使用 Stream 转换 records 类型
+        List<TARGET> targetList = iPage.getRecords()
+                .stream()
                 .map(mapper)
                 .collect(Collectors.toList());
+        // 2. 构造 PageResponse ，塞进去 records
         return PageResponse.<TARGET>builder()
                 .current(iPage.getCurrent())
                 .total(iPage.getTotal())
