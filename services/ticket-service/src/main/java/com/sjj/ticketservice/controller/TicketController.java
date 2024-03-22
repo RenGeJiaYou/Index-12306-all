@@ -1,6 +1,6 @@
 package com.sjj.ticketservice.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.sjj.conventionspringbootstarter.page.PageResponse;
 import com.sjj.conventionspringbootstarter.result.Result;
 import com.sjj.ticketservice.dto.req.TicketPageQueryReqDTO;
 import com.sjj.ticketservice.dto.resp.TicketPageQueryRespDTO;
@@ -25,7 +25,7 @@ public class TicketController {
      * 根据条件查询车票
      */
     @GetMapping("/api/ticket-service/ticket/query")
-    public Result<IPage<TicketPageQueryRespDTO>> pageListTicketQuery(TicketPageQueryReqDTO req){
+    public Result<PageResponse<TicketPageQueryRespDTO>> pageListTicketQuery(TicketPageQueryReqDTO req){
         return Results.success(ticketService.pageListTicketQuery(req));
     }
 }
