@@ -28,7 +28,7 @@ public final class JWTUtil {
      */
     public static String generateAccessToken(UserLoginReqDTO userInfo){
         HashMap<String, Object> map = Maps.newHashMap();
-        map.put("username",userInfo.getUsername());
+        map.put("username",userInfo.getUsernameOrMailOrPhone());
         map.put("password",userInfo.getPassword());
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS512,SECRET)

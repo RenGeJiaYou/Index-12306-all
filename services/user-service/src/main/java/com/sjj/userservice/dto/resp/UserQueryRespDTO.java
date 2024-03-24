@@ -1,31 +1,18 @@
-package com.sjj.userservice.dao.entity;
+package com.sjj.userservice.dto.resp;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
- * 用户信息实体
+ * 用户查询返回参数
  *
  * @author Island_World
  */
-
 @Data
-@TableName("t_user")
-public class UserDO {
-    /**
-     * id
-     */
-    private Long id;
-
+public class UserQueryRespDTO {
     /**
      * 用户名
      */
     private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
 
     /**
      * 真实姓名

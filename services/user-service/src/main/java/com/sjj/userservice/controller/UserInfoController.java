@@ -1,39 +1,41 @@
 package com.sjj.userservice.controller;
 
 import com.sjj.conventionspringbootstarter.result.Result;
-import com.sjj.userservice.dto.req.UserLoginReqDTO;
-import com.sjj.userservice.dto.resp.UserLoginRespDTO;
+import com.sjj.userservice.dto.req.UserRegisterReqDTO;
+import com.sjj.userservice.dto.resp.UserQueryRespDTO;
+import com.sjj.userservice.dto.resp.UserRegisterRespDTO;
 import com.sjj.userservice.service.UserLoginService;
+import com.sjj.userservice.service.UserService;
 import com.sjj.webspringbootstarter.Results;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 /**
- * 用户信息控制层
+ * 用户登录控制层次
  *
  * @author Island_World
  */
-@Controller
+@RestController
+@RequiredArgsConstructor
 public class UserInfoController {
-    private UserLoginService userLoginService;
+    private final UserLoginService userLoginService;
+    private final UserService userService;
 
-    @PostMapping("/api/user-service/v1/login")
-    public Result<UserLoginRespDTO> login(@RequestBody UserLoginReqDTO req) {
-        return Results.success(userLoginService.login(req));
+    @GetMapping("/api/user-service/query")
+
+    public Result<UserQueryRespDTO>queryUsername(@RequestParam("username") @NotEmpty String username){
+        return Results.success(userService.queryUserByUsername(username));
     }
 
-    @GetMapping("api/user-service/check-login")
-    public Result<UserLoginRespDTO> checkLogin(@RequestParam String accessToken) {
-        UserLoginRespDTO result = userLoginService.checkLogin(accessToken);
-        return Results.success(result);
+    @GetMapping("/api/user-service/has-username")
+    public Result<Boolean>hasUserName(@RequestParam("username") @NotEmpty String username){
+        return Results.success(userLoginService.hasUsername(username));
     }
 
-    @GetMapping("/api/user-service/logout")
-    public Result<Void> logout(@RequestParam(required = false) String accessToken) {
-        userLoginService.logout(accessToken);
-        return Results.success();
+    @PostMapping("/api/user-service/register")
+    public Result<UserRegisterRespDTO> register(@RequestBody @Valid UserRegisterReqDTO req){
+        return Results.success(userLoginService.register(req));
     }
 }

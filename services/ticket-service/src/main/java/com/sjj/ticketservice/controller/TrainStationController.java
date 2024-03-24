@@ -5,8 +5,8 @@ import com.sjj.ticketservice.dto.resp.TrainStationQueryRespDTO;
 import com.sjj.ticketservice.service.TrainStationService;
 import com.sjj.webspringbootstarter.Results;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Island_World
  */
-@Service
+@RestController
 @RequiredArgsConstructor
 public class TrainStationController {
     private final TrainStationService trainStationService;

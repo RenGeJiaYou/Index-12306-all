@@ -1,17 +1,19 @@
 package com.sjj.userservice.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.sjj.databasespringbootstarter.base.BaseDO;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
- * 用户信息实体
+ * 乘车人实体
  *
  * @author Island_World
  */
-
 @Data
-@TableName("t_user")
-public class UserDO {
+@TableName("t_passenger")
+public class PassengerDO extends BaseDO {
     /**
      * id
      */
@@ -21,11 +23,6 @@ public class UserDO {
      * 用户名
      */
     private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
 
     /**
      * 真实姓名
@@ -38,9 +35,14 @@ public class UserDO {
     private Integer idType;
 
     /**
-     * 证件号
+     * 证件号码
      */
     private String idCard;
+
+    /**
+     * 优惠类型
+     */
+    private Integer discountType;
 
     /**
      * 手机号
@@ -48,27 +50,12 @@ public class UserDO {
     private String phone;
 
     /**
-     * 邮箱
+     * 添加日期
      */
-    private String mail;
-
-    /**
-     * 旅客类型
-     */
-    private Integer userType;
+    private Date createDate;
 
     /**
      * 审核状态
      */
     private Integer verifyStatus;
-
-    /**
-     * 邮编
-     */
-    private String postCode;
-
-    /**
-     * 地址
-     */
-    private String address;
 }

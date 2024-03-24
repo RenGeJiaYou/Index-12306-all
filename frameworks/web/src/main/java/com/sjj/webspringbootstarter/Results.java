@@ -44,11 +44,13 @@ public class Results {
     /**
      * 构造带数据的成功响应
      *
-     * @param data
+     * @param data 响应数据
      * @return Result<T>
      */
     public static <T> Result<T> success(T data) {
-        return new Result<T>().setCode(Result.SUCCESS_CODE).setData(data);
+        return new Result<T>()
+                .setCode(Result.SUCCESS_CODE)
+                .setData(data);
     }
 
     /**

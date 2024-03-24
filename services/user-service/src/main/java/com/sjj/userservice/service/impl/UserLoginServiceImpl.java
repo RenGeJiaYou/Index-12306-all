@@ -37,12 +37,13 @@ public class UserLoginServiceImpl implements UserLoginService {
     @Override
     public UserLoginRespDTO login(UserLoginReqDTO req) {
         var wrapper = Wrappers.lambdaQuery(UserDO.class)
-                .eq(UserDO::getUsername, req.getUsername())
+                // todo 增加逻辑，判断具体是邮箱/手机号/用户名
+                .eq(UserDO::getUsername, req.getUsernameOrMailOrPhone())
                 .eq(UserDO::getPassword, req.getPassword());
         UserDO userDO = userMapper.selectOne(wrapper);
         if (userDO != null){
             String accessToken = JWTUtil.generateAccessToken(req);
-            UserLoginRespDTO actual = new UserLoginRespDTO(req.getUsername(), userDO.getRealName(), accessToken);
+            UserLoginRespDTO actual = new UserLoginRespDTO(req.getUsernameOrMailOrPhone(), userDO.getRealName(), accessToken);
             distributedCache.put(accessToken, JSON.toJSONString(actual),30, TimeUnit.MINUTES);
             return actual;
         }
