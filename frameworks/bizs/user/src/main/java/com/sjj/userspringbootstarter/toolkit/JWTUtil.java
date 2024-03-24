@@ -37,10 +37,10 @@ import java.util.HashMap;
 
 @Slf4j
 public final class JWTUtil {
-    private final static String SECERT = "SecretKey039245678901232039487623493984682379954387615468277623456783";
-    private final static String ISSUER = "index12306";
+    public final static String SECERT = "SecretKey039245678901232039487623493984682379954387615468277623456783";
+    public final static String ISSUER = "index12306";
     private final static long EXPIRATION = 86400L;
-    private final static String TOKEN_PREFIX = "Bearer ";
+    public final static String TOKEN_PREFIX = "Bearer ";
 
     /**
      * 生成 token

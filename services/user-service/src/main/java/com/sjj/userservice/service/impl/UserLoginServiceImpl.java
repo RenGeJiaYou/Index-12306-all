@@ -15,6 +15,7 @@ import com.sjj.userservice.dto.resp.UserLoginRespDTO;
 import com.sjj.userservice.dto.resp.UserRegisterRespDTO;
 import com.sjj.userservice.service.UserLoginService;
 import com.sjj.userservice.toolkit.JWTUtil;
+import com.sjj.userspringbootstarter.core.UserInfoDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -41,10 +42,15 @@ public class UserLoginServiceImpl implements UserLoginService {
                 .eq(UserDO::getUsername, req.getUsernameOrMailOrPhone())
                 .eq(UserDO::getPassword, req.getPassword());
         UserDO userDO = userMapper.selectOne(wrapper);
-        if (userDO != null){
-            String accessToken = JWTUtil.generateAccessToken(req);
+        if (userDO != null) {
+            UserInfoDTO userInfoDTO = UserInfoDTO.builder()
+                    .userId(String.valueOf(userDO.getId()))
+                    .username(userDO.getUsername())
+                    .realName(userDO.getRealName())
+                    .build();
+            String accessToken = JWTUtil.generateAccessToken(userInfoDTO);
             UserLoginRespDTO actual = new UserLoginRespDTO(req.getUsernameOrMailOrPhone(), userDO.getRealName(), accessToken);
-            distributedCache.put(accessToken, JSON.toJSONString(actual),30, TimeUnit.MINUTES);
+            distributedCache.put(accessToken, JSON.toJSONString(actual), 30, TimeUnit.MINUTES);
             return actual;
         }
         throw new ServiceException("用户名不存在或密码错误");
@@ -52,13 +58,13 @@ public class UserLoginServiceImpl implements UserLoginService {
 
     @Override
     public UserLoginRespDTO checkLogin(String accessToken) {
-        return distributedCache.get(accessToken,UserLoginRespDTO.class);
+        return distributedCache.get(accessToken, UserLoginRespDTO.class);
 
     }
 
     @Override
     public void logout(String accessToken) {
-        if (StrUtil.isNotEmpty(accessToken)){
+        if (StrUtil.isNotEmpty(accessToken)) {
             distributedCache.delete(accessToken);
         }
     }
