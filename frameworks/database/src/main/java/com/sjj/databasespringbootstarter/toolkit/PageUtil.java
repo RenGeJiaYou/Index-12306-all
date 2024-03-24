@@ -37,16 +37,16 @@ public class PageUtil {
     /**
      * arguments to {@link Page}
      *
-     * @param current
-     * @param size
-     * @return Page
+     * @param current 当前页码
+     * @param size 每页条数
+     * @return Page Page实例
      */
     public static Page convert(long current,long size){return new Page(current,size);}
 
     /**
      * {@link PageRequest} to {@link Page}
      *
-     * @param pageRequest
+     * @param pageRequest PageRequest 实例
      * @return Page
      */
     public static Page convert(PageRequest pageRequest) {
@@ -56,7 +56,7 @@ public class PageUtil {
     /**
      * {@link IPage} build to {@link PageResponse}
      *
-     * @param ipage
+     * @param ipage IPage 实现类
      * @return PageResponse
      */
     private static PageResponse buildConventionPage(IPage ipage) {
@@ -71,7 +71,7 @@ public class PageUtil {
 
     /**
      * {@link IPage} to {@link PageResponse}
-     * @param ipage
+     * @param ipage IPage 实现类
      * @return PageResponse
     * */
     public static PageResponse convert(IPage ipage){return buildConventionPage(ipage);}
@@ -79,10 +79,10 @@ public class PageUtil {
     /**
      * {@link IPage} to {@link PageResponse}
      *
-     * @param iPage
-     * @param targetClass
-     * @param <TARGET>
-     * @param <ORIGINAL>
+     * @param iPage IPage 实现类
+     * @param targetClass 转换目标类.class
+     * @param <TARGET> 目标类型
+     * @param <ORIGINAL> 源类型
      * @return PageResponse
      */
     public static <TARGET, ORIGINAL> PageResponse<TARGET> convert(IPage<ORIGINAL>iPage,Class<TARGET> targetClass){
@@ -94,8 +94,8 @@ public class PageUtil {
     /**
      * {@link IPage} to {@link PageResponse}
      *
-     * @param iPage
-     * @param mapper
+     * @param iPage IPage 实现类
+     * @param mapper 转换类型的回调函数
      * @return PageResponse
      */
     public static <TARGET, ORIGINAL> PageResponse<TARGET> convert(IPage<ORIGINAL> iPage, Function<? super ORIGINAL, ? extends TARGET> mapper) {

@@ -28,8 +28,8 @@ import lombok.Data;
 @Data
 public class PageRequest {
     // 当前页数
-    private Long current;
+    private Long current=1L;
 
     // 每页条数
-    private Long size;
+    private Long size=10L;
 }

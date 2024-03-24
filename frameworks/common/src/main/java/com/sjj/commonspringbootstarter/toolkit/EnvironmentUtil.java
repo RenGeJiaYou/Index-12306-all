@@ -31,26 +31,28 @@ import java.util.List;
 
 public class EnvironmentUtil {
 
-    private static List<String> ENVIRONMENT_LIST = new ArrayList<>();
+    private static final List<String> ENVIRONMENT_LIST = new ArrayList<>();
 
     static {
         ENVIRONMENT_LIST.add("dev");
         ENVIRONMENT_LIST.add("test");
     }
 
-    // 判断当前是否为开发环境
+    /**
+     * 判断当前是否为开发环境
+     */
     public static boolean isDevEnvironment() {
         ConfigurableEnvironment configurableEnvironment = ApplicationContextHolder.getBean(ConfigurableEnvironment.class);
         // 获取当前活动的 spring 配置文件
         String propertyActive = configurableEnvironment.getProperty("spring.profiles.active", "dev");
         return ENVIRONMENT_LIST
                 .stream()
-                .filter(each -> propertyActive.contains(each))
-                .findFirst()
-                .isPresent();
+                .anyMatch(propertyActive::contains);
     }
 
-    // 判断当前是否为生产环境
+    /**
+     * 判断当前是否为生产环境
+     */
     public static boolean isProdEnvironment() {
         ConfigurableEnvironment configurableEnvironment = ApplicationContextHolder.getBean(ConfigurableEnvironment.class);
         // 获取当前活动的 spring 配置文件

@@ -24,7 +24,15 @@ package com.sjj.commonspringbootstarter.enums;
  */
 
 public enum FlagEnum {
-    FALSE(0), TRUE(1);
+    /**
+     * False
+     */
+    FALSE(0),
+
+    /**
+     * True
+     */
+    TRUE(1);
 
     private final Integer flag;
 
