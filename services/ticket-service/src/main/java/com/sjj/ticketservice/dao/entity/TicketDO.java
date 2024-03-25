@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
  * @author Island_World
  */
 @Data
+@TableName("t_ticket")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@TableName("t_ticket")
 public class TicketDO extends BaseDO {
     /**
      * id

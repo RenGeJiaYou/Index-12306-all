@@ -2,7 +2,10 @@ package com.sjj.ticketservice.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.sjj.databasespringbootstarter.base.BaseDO;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 座位实体类
@@ -11,6 +14,9 @@ import lombok.Data;
  */
 @Data
 @TableName("t_seat")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class SeatDO extends BaseDO {
     /**
      * id 主键
