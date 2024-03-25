@@ -22,6 +22,13 @@ spring:
       maximum-pool-size: 5
       minimum-idle: 5
 
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      password: nacos
+      username: nacos
+
   data:
     redis:
       host: 127.0.0.1
@@ -36,6 +43,7 @@ mybatis-plus:
       logic-not-delete-value: 0
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
 
 framework:
   fastjson:
@@ -46,6 +54,18 @@ framework:
       prefix: '${spring.application.name}:'
       value-timeout: 16
       value-time-unit: days
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        loggerLevel: HEADERS
+        readTimeout: 5000
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
 
 logging:
   level:
