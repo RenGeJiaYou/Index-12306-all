@@ -47,7 +47,7 @@ public interface AbstractExecuteStrategy<REQUEST,RESPONSE> {
     }
 
     /**
-     * 执行策略，带返回值
+     * 执行策略，带返回值。将作为抽象类的模板模式
      * @param requestParam 执行策略入参
      * @return 执行策略后返回值
      */

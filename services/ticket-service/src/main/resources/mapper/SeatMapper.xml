@@ -9,7 +9,7 @@
         from t_seat
         where train_id = #{seatDO.trainId}
         and start_station = #{seatDO.startStation}
-        and start_station = #{seatDO.endStation}
+        and end_station = #{seatDO.endStation}
         and seat_status = '0'
         and carriage_number in
         <foreach collection="trainCarriageList" item="carriage" open="(" close=")">

@@ -13,7 +13,7 @@ import java.util.List;
  * @author Island_World
  */
 @Data
-public class PurchaseTicketDTO {
+public class PurchaseTicketReqDTO {
     /**
      * 车次 ID
      */

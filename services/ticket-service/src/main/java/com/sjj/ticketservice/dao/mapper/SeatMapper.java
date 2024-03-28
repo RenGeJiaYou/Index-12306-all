@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface SeatMapper extends BaseMapper<SeatDO> {
     /**
-     * 获取列车车厢余票集合
+     * 从「特定车次」的「特定起止站点」的「特定车厢号」集合中，获取列车车厢余票集合
      */
     List<Integer> listSeatRemainingTicket(@Param("seatDO")SeatDO seatDO,
                                           @Param("trainCarriageList")List<String> trainCarriageList);

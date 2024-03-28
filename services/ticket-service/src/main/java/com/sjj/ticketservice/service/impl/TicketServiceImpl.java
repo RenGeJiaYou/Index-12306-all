@@ -15,6 +15,7 @@ import com.sjj.ticketservice.dao.mapper.TrainMapper;
 import com.sjj.ticketservice.dao.mapper.TrainStationPriceMapper;
 import com.sjj.ticketservice.dao.mapper.TrainStationRelationMapper;
 import com.sjj.ticketservice.dto.domain.BulletTrainDTO;
+import com.sjj.ticketservice.dto.req.PurchaseTicketReqDTO;
 import com.sjj.ticketservice.dto.req.TicketPageQueryReqDTO;
 import com.sjj.ticketservice.dto.resp.TicketPageQueryRespDTO;
 import com.sjj.ticketservice.service.TicketService;
@@ -112,5 +113,11 @@ public class TicketServiceImpl implements TicketService {
             }
             return result;
         });
+    }
+
+
+    @Override
+    public String purchaseTickets(PurchaseTicketReqDTO req) {
+        return null;
     }
 }

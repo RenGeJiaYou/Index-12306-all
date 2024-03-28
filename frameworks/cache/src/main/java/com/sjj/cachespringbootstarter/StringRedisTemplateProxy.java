@@ -249,6 +249,10 @@ public class StringRedisTemplateProxy implements DistributedCache {
         return stringRedisTemplate.countExistingKeys(Lists.newArrayList(keys));
     }
 
+    /**
+     * @param cacheLoader 实参值来源于客户端代码传入的 λ 方法，内部返回的是特定业务的 MyBatis Select() 结果。如果查询缓存时未命中，就从数据库中加载进来
+     *
+     */
     private <T> T loadAndSet(String key, CacheLoader<T> cacheLoader, long timeout, TimeUnit timeUnit, boolean safeFlag, RBloomFilter<String> bloomFilter) {
         T result = cacheLoader.load();
         if (CacheUtil.isNullOrBlank(result)) {
