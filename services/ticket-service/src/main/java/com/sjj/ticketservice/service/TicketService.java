@@ -22,7 +22,7 @@ public interface TicketService {
     PageResponse<TicketPageQueryRespDTO> pageListTicketQuery(TicketPageQueryReqDTO req);
 
     /**
-     * 购买车票
+     * 1.购买车票，根据策略模式选特定等级的车座 2.新增车票记录 3.远程调用 Order 服务创建订单
      *
      * @param req 车票购买请求参数
      * @return 订单号

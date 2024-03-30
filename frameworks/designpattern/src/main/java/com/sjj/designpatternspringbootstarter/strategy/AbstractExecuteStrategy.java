@@ -19,7 +19,8 @@ package com.sjj.designpatternspringbootstarter.strategy;
 
 /**
  * 策略执行抽象
- * @author: Island_World
+ *
+ * @author Island_World
  *
  */
 

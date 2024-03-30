@@ -23,10 +23,10 @@ public final class StationCalculateUtil {
         List<RouteDTO> results = new ArrayList<>();
         int start = stations.indexOf(startStation);
         int end = stations.indexOf(endStation);
-        if (start<0|| end<0 ||start >= end) {
+        if (start < 0 || end < 0 || start >= end) {
             return results;
         }
-        for (int i = start; i <end ; i++) {
+        for (int i = start; i < end; i++) {
             results.add(new RouteDTO(stations.get(i), stations.get(i + 1)));
         }
         return results;

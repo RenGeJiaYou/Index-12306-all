@@ -7,6 +7,12 @@ package com.sjj.ticketservice.common.constant;
  */
 
 public final class RedisKeyConstant {
+
+    /**
+     * 列车基本信息，Key Prefix + 列车ID
+     */
+    public static final String TRAIN_INFO = "index12306-ticket-service:train_info:";
+
     /**
      * 站点查询，Key Prefix + 起始城市_终点城市_日期
      */

@@ -94,7 +94,7 @@ public class AbstractStrategyChoose implements ApplicationListener<ApplicationIn
      * @param requestParam 执行策略入参
      * @param <REQUEST>    执行策略入参范型
      * @param <RESPONSE>   执行策略出参范型
-     * @return
+     * @return 当前策略处理后的 RespDTO
      */
     public <REQUEST,RESPONSE> RESPONSE chooseAndExecuteResp(String mark, REQUEST requestParam) {
         AbstractExecuteStrategy strategy = choose(mark, null);
@@ -104,7 +104,7 @@ public class AbstractStrategyChoose implements ApplicationListener<ApplicationIn
     /**
      * 监听 ApplicationInitializingEvent 事件，
      * 当这个事件发生时，onApplicationEvent方法会被调用。
-     * 本方法会获取所有的 AbstractExecuteStrategy 实例，并将它们添加到abstractExecuteStrategyMap中。
+     * 本方法会获取所有的 AbstractExecuteStrategy 实例，并将它们添加到 abstractExecuteStrategyMap 中。
      */
     @Override
     public void onApplicationEvent(ApplicationInitializingEvent event) {

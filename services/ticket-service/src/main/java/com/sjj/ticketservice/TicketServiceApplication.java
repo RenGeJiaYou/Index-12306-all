@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @MapperScan("com.sjj.ticketservice.dao.mapper")
-@EnableFeignClients()
+@EnableFeignClients("com.sjj.ticketservice.remote")
 public class TicketServiceApplication {
 
     public static void main(String[] args) {

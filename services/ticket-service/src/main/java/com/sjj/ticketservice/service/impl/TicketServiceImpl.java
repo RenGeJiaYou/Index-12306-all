@@ -1,29 +1,52 @@
 package com.sjj.ticketservice.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.google.common.base.Objects;
 import com.sjj.cachespringbootstarter.DistributedCache;
+import com.sjj.conventionspringbootstarter.exception.ServiceException;
 import com.sjj.conventionspringbootstarter.page.PageResponse;
+import com.sjj.conventionspringbootstarter.result.Result;
 import com.sjj.databasespringbootstarter.toolkit.PageUtil;
+import com.sjj.designpatternspringbootstarter.strategy.AbstractStrategyChoose;
+import com.sjj.ticketservice.common.enums.TicketStatusEnum;
+import com.sjj.ticketservice.common.enums.VehicleSeatTypeEnum;
+import com.sjj.ticketservice.common.enums.VehicleTypeEnum;
+import com.sjj.ticketservice.dao.entity.TicketDO;
 import com.sjj.ticketservice.dao.entity.TrainDO;
 import com.sjj.ticketservice.dao.entity.TrainStationPriceDO;
 import com.sjj.ticketservice.dao.entity.TrainStationRelationDO;
+import com.sjj.ticketservice.dao.mapper.TicketMapper;
 import com.sjj.ticketservice.dao.mapper.TrainMapper;
 import com.sjj.ticketservice.dao.mapper.TrainStationPriceMapper;
 import com.sjj.ticketservice.dao.mapper.TrainStationRelationMapper;
 import com.sjj.ticketservice.dto.domain.BulletTrainDTO;
+import com.sjj.ticketservice.dto.domain.PassengerInfoDTO;
 import com.sjj.ticketservice.dto.req.PurchaseTicketReqDTO;
 import com.sjj.ticketservice.dto.req.TicketPageQueryReqDTO;
 import com.sjj.ticketservice.dto.resp.TicketPageQueryRespDTO;
+import com.sjj.ticketservice.remote.TicketOrderRemoteService;
+import com.sjj.ticketservice.remote.dto.TicketOrderCreateRemoteReqDTO;
+import com.sjj.ticketservice.remote.dto.TicketOrderItemCreateRemoteReqDTO;
 import com.sjj.ticketservice.service.TicketService;
+import com.sjj.ticketservice.service.handler.ticket.dto.TrainPurchaseTicketRespDTO;
 import com.sjj.ticketservice.toolkit.DateUtil;
+import com.sjj.userspringbootstarter.core.UserContext;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static com.sjj.ticketservice.common.constant.Index13206Constant.ADVANCE_TICKET_DAY;
+import static com.sjj.ticketservice.common.constant.RedisKeyConstant.TRAIN_INFO;
 import static com.sjj.ticketservice.common.constant.RedisKeyConstant.TRAIN_STATION_REMAINING_TICKET;
 
 /**
@@ -31,13 +54,17 @@ import static com.sjj.ticketservice.common.constant.RedisKeyConstant.TRAIN_STATI
  *
  * @author Island_World
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TicketServiceImpl implements TicketService {
     private final TrainMapper trainMapper;
     private final TrainStationRelationMapper trainStationRelationMapper;
     private final TrainStationPriceMapper trainStationPriceMapper;
+    private final TicketMapper ticketMapper;
     private final DistributedCache distributedCache;
+    private final AbstractStrategyChoose abstractStrategyChoose;
+    private final TicketOrderRemoteService ticketOrderRemoteService;
 
     @Override
     public PageResponse<TicketPageQueryRespDTO> pageListTicketQuery(TicketPageQueryReqDTO req) {
@@ -115,9 +142,71 @@ public class TicketServiceImpl implements TicketService {
         });
     }
 
-
     @Override
     public String purchaseTickets(PurchaseTicketReqDTO req) {
-        return null;
+        String trainId = req.getTrainId();
+        TrainDO trainDO = distributedCache.get(
+                TRAIN_INFO + trainId,
+                TrainDO.class,
+                () -> trainMapper.selectById(trainId),
+                ADVANCE_TICKET_DAY,
+                TimeUnit.DAYS);
+        // 根据"交通工具类型"+"座位类型"选择对应的策略,传入 购票请求参数 并返回 List<购票响应参数>，即已为乘车人选择的[商务/一等/二等]座集合
+        List<TrainPurchaseTicketRespDTO> selectedSeatsAsTickets = abstractStrategyChoose.chooseAndExecuteResp(
+                VehicleTypeEnum.findNameByCode(trainDO.getTrainType()) + VehicleSeatTypeEnum.findNameByCode(req.getSeatType()), req);
+        // todo 批量插入
+        // 返回了 List<TrainPurchaseTicketRespDTO> 说明 t_seat 已经锁定了这么多座位；接下来就是依次创建 t_ticket 记录
+        selectedSeatsAsTickets.forEach(each -> {
+            PassengerInfoDTO passengerInfo = each.getPassengerInfo();
+            TicketDO ticketDO = TicketDO.builder()
+                    .username(UserContext.getUserName()) // todo 了解 UserContext
+                    .trainId(Long.valueOf(req.getTrainId()))
+                    .carriageNumber(each.getCarriageNumber())
+                    .seatNumber(each.getSeatNumber())
+                    .passengerId(passengerInfo.getPassengerId())
+                    .ticketStatus(TicketStatusEnum.UNPAID.getCode())
+                    .build();
+            ticketMapper.insert(ticketDO);
+        });
+        Result<String> ticketOrderResult;
+        try {
+            // 订单明细请求DTO列表
+            List<TicketOrderItemCreateRemoteReqDTO> orderItemList = new ArrayList<>();
+            selectedSeatsAsTickets.forEach(each -> {
+                PassengerInfoDTO passengerInfo = each.getPassengerInfo();
+                var orderItemCreateRemoteReqDTO = TicketOrderItemCreateRemoteReqDTO.builder()
+                        .carriageNumber(each.getCarriageNumber())
+                        .seatNumber(each.getSeatNumber())
+                        .realName(passengerInfo.getRealName())
+                        .idType(passengerInfo.getIdType())
+                        .idCard(passengerInfo.getIdCard())
+                        .phone(passengerInfo.getPhone())
+                        .amount(each.getAmount())
+                        .build();
+                orderItemList.add(orderItemCreateRemoteReqDTO);
+            });
+            // 订单请求 DTO
+            var orderCreateRemoteReqDTO = TicketOrderCreateRemoteReqDTO.builder()
+                    .username(UserContext.getUserName())
+                    .trainId(Long.valueOf(req.getTrainId()))
+                    .departure(req.getDeparture())
+                    .arrival(req.getArrival())
+                    //.source()
+                    .orderTime(new Date())
+                    .ticketOrderItems(orderItemList)
+                    .build();
+            ticketOrderResult = ticketOrderRemoteService.createTicketOrder(orderCreateRemoteReqDTO);
+
+        } catch (Throwable ex) {
+            log.error("远程调用订单服务创建错误，请求参数：{}", JSON.toJSONString(req));
+            // todo 回退锁定的车票
+            throw ex;
+        }
+        if (ticketOrderResult == null || !ticketOrderResult.isSuccess()) {
+            log.error("远程调用订单服务创建错误，请求参数：{}", JSON.toJSONString(req));
+            // todo 回退锁定的车票
+            throw new ServiceException(ticketOrderResult.getMessage());
+        }
+        return ticketOrderResult.getData();
     }
 }

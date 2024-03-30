@@ -36,19 +36,25 @@ public abstract class AbstractTrainPurchaseTicketTemplate implements Application
      * 选择[商务座,一等座,二等座]，由各子类具体实现
      *
      * @param req 购票请求入参
-     * @return 乘车人座位
+     * @return 为乘车人选好的座位号集合
      */
     protected abstract List<TrainPurchaseTicketRespDTO> selectSeats(PurchaseTicketReqDTO req);
 
 
+    /**
+     * 锁定已分配的座位，具体做法是修改 t_seat 表中的 seat_status 字段
+     *
+     * @param req 执行策略入参
+     * @return selectSeats() 的原返回值，实质是 [商务/一等/二等]选座 handler 为乘车人选好的座位号集合
+     */
     @Override
     public List<TrainPurchaseTicketRespDTO> executeResp(PurchaseTicketReqDTO req) {
         // TODO 后续逻辑全部转换为 LUA 缓存原子操作
-        List<TrainPurchaseTicketRespDTO> actualSeats = selectSeats(req);
-        if (CollUtil.isEmpty(actualSeats)) {
+        List<TrainPurchaseTicketRespDTO> selectedSeats = selectSeats(req);
+        if (CollUtil.isEmpty(selectedSeats)) {
             throw new ServiceException("站点余票不足，请尝试更换座位类型或选择其它站点");
         }
-        // 获取扣减开始站点和目的站点及中间站点信息
+        // 获取开始站点和目的站点及中间站点信息
         var wrapper = Wrappers.lambdaQuery(TrainStationDO.class)
                 .eq(TrainStationDO::getTrainId, req.getTrainId());
         // 如车次1 路线为 (起点站)A-B-C-D-(终点站)E，将返回 [(A-B),(B-C),(C-D),(D-E),(E-null)] 五条数据
@@ -58,7 +64,7 @@ public abstract class AbstractTrainPurchaseTicketTemplate implements Application
         // 如出发站点为 B, 到达站点为 D, 返回[(B-C),(C-D)]
         var trainStationThroughList = StationCalculateUtil.throughStation(trainStationAllList, req.getDeparture(), req.getArrival());
         // 锁定座位车票库存
-        actualSeats.forEach(each -> trainStationThroughList.forEach(item -> {
+        selectedSeats.forEach(each -> trainStationThroughList.forEach(item -> {
             var updateWrapper = Wrappers.lambdaUpdate(SeatDO.class)
                     .eq(SeatDO::getTrainId,req.getTrainId())                // TrainID 来自请求参数。因为购票时，已经选定具体车次
                     .eq(SeatDO::getCarriageNumber,each.getCarriageNumber()) // CarriageNumber 来自列车购票响应参数。响应参数包含了找到的空座的所在车厢
@@ -68,7 +74,7 @@ public abstract class AbstractTrainPurchaseTicketTemplate implements Application
                     .set(SeatDO::getSeatStatus, SeatsStatusEnum.LOCKED.getCode()); // 将 t_seat 表中对应记录设置为锁定
             seatMapper.update(null,updateWrapper);
         }));
-        return actualSeats;
+        return selectedSeats;
     }
 
     @Override
