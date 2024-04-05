@@ -34,6 +34,7 @@ public class OrderServiceImpl implements OrderService {
                 .trainId(req.getTrainId())
                 .departure(req.getDeparture())
                 .arrival(req.getArrival())
+                .source(req.getSource())
                 .status(0)
                 .orderTime(req.getOrderTime())
                 .build();
