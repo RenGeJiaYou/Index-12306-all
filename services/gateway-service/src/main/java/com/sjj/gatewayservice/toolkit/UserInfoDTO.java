@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.sjj.userspringbootstarter.core;
+package com.sjj.gatewayservice.toolkit;
 
 /*
  * 用户信息 DTO
