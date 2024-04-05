@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * 用户服务应用启动器
  */
-@SpringBootApplication
+@SpringBootApplication()
 @MapperScan("com.sjj.userservice.dao.mapper")
 public class UserServiceApplication {
 

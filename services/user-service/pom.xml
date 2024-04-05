@@ -9,8 +9,6 @@
     </parent>
 
     <artifactId>user-service</artifactId>
-    <name>user-service</name>
-    <description>user-service</description>
 
     <dependencies>
         <dependency>
