@@ -6,10 +6,7 @@ import com.sjj.userservice.dto.resp.PassengerRespDTO;
 import com.sjj.userservice.service.PassengerService;
 import com.sjj.webspringbootstarter.Results;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,8 +24,16 @@ public class PassengerController {
      * 根据用户名查询乘车人列表
      */
     @GetMapping("/api/user-service/passenger/query")
-    public Result<List<PassengerRespDTO>> listPassengerQuery(String username){
-        return Results.success(passengerService.listPassengerQuery(username));
+    public Result<List<PassengerRespDTO>> listPassengerQueryByUsername(String username){
+        return Results.success(passengerService.listPassengerQueryByUsername(username));
+    }
+
+    /**
+     * 根据用户名及乘车人 ID 列表查询乘车人列表
+     */
+    @GetMapping("/api/user-service/passenger/query/ids")
+    public Result<List<PassengerRespDTO>> listPassengerQueryByUsername(@RequestParam("username")String username, @RequestParam("username") List<Long> ids){
+        return Results.success(passengerService.listPassengerQueryByUsername(username));
     }
 
     /**

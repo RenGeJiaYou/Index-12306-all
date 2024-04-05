@@ -19,7 +19,16 @@ public interface PassengerService {
      * @param username 用户名（注册时已确保不重名）
      * @return 该用户保存的乘车人列表
      */
-    List<PassengerRespDTO> listPassengerQuery(String username);
+    List<PassengerRespDTO> listPassengerQueryByUsername(String username);
+
+    /**
+     * 根据乘车人 ID 集合查询乘车人列表
+     *
+     * @param username 用户名
+     * @param ids 乘车人 ID 集合
+     * @return 乘车人返回列表
+     */
+    List<PassengerRespDTO> listPassengerQueryByIds(String username,List<Long> ids);
 
     /**
      * 保存新的乘车人

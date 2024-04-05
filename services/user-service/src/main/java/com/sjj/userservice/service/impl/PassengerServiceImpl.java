@@ -24,11 +24,20 @@ import java.util.List;
 public class PassengerServiceImpl implements PassengerService {
     private final PassengerMapper passengerMapper;
     @Override
-    public List<PassengerRespDTO> listPassengerQuery(String username) {
+    public List<PassengerRespDTO> listPassengerQueryByUsername(String username) {
         var wrapper= Wrappers.lambdaQuery(PassengerDO.class)
                 .eq(PassengerDO::getUsername,username);
         var passengerDOList = passengerMapper.selectList(wrapper);
         return BeanUtil.convert(passengerDOList, PassengerRespDTO.class);
+    }
+
+    @Override
+    public List<PassengerRespDTO> listPassengerQueryByIds(String username, List<Long> ids) {
+        var wrapper = Wrappers.lambdaQuery(PassengerDO.class)
+                .eq(PassengerDO::getUsername,username)
+                .eq(PassengerDO::getId,ids);    // Wrappers 的 eq() 可以传列表
+       var passengerList = passengerMapper.selectList(wrapper);
+        return BeanUtil.convert(passengerList,PassengerRespDTO.class);
     }
 
     @Override
