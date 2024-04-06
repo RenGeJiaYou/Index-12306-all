@@ -7,8 +7,7 @@
         <artifactId>services</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
-    <artifactId>aggregation-service</artifactId>
+    <artifactId>aggregate-service</artifactId>
 
     <dependencies>
         <dependency>
@@ -22,23 +21,43 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- 其它子模块 -->
+        <dependency>
+            <groupId>com.sjj</groupId>
+            <artifactId>user-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.sjj</groupId>
+            <artifactId>ticket-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.sjj</groupId>
+            <artifactId>order-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sjj</groupId>
+            <artifactId>pay-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sjj</groupId>
+            <artifactId>gateway-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

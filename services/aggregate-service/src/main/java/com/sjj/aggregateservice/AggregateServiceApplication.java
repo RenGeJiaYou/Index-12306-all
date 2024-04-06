@@ -1,4 +1,4 @@
-package com.sjj.aggregationservice;
+package com.sjj.aggregateservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,11 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         "com.sjj.orderservice",
         "com.sjj.payservice",
         "com.sjj.gatewayservice"
+
 })
-public class AggregationServiceApplication {
+public class AggregateServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AggregationServiceApplication.class, args);
+        SpringApplication.run(AggregateServiceApplication.class, args);
     }
 
 }

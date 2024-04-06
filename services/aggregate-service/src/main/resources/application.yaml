@@ -1,10 +1,9 @@
-
 server:
   port: 9095
 
 spring:
   application:
-    name: index12306-aggregation-service
+    name: aggregate-service
   datasource:
     driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
     url: jdbc:shardingsphere:classpath:shardingsphere-config.yaml
@@ -35,3 +34,4 @@ framework:
   cache:
     redis:
       value-timeout: 50000
+

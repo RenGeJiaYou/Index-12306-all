@@ -1,10 +1,10 @@
-package com.sjj.aggregationservice;
+package com.sjj.aggregateservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AggregationServiceApplicationTests {
+class AggregateServiceApplicationTests {
 
     @Test
     void contextLoads() {
