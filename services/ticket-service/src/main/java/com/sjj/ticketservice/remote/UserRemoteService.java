@@ -14,7 +14,7 @@ import java.util.List;
  * @author Island_World
  */
 
-@FeignClient("user-service")
+@FeignClient(value = "user-service", url = "${aggregation.remote-url}")
 public interface UserRemoteService {
     @GetMapping("api/user-service/passenger/query/ids")
     Result<List<PassengerRespDTO>> listPassengerQueryByIds(@RequestParam("username") String username,

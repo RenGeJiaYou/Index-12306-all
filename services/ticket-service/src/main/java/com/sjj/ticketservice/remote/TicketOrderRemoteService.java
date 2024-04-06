@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  *
  * @author Island_World
  */
-@FeignClient(value = "order-service",url = "")
+@FeignClient(value = "order-service",url = "${aggregation.remote-url}")
 public interface TicketOrderRemoteService {
     @PostMapping("/api/order-service/order/ticket/create")
     Result<String> createTicketOrder(@RequestBody TicketOrderCreateRemoteReqDTO req);
