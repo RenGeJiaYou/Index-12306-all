@@ -1,4 +1,4 @@
-package com.sjj.userservice.dto.resp;
+package com.sjj.ticketservice.remote.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

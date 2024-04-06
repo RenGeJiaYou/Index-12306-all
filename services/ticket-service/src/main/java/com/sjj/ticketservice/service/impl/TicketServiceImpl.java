@@ -39,6 +39,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -69,7 +70,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public PageResponse<TicketPageQueryRespDTO> pageListTicketQuery(TicketPageQueryReqDTO req) {
         // TODO 责任链模式 验证城市名称是否存在、不存在加载缓存等等
-        /**
+        /*
          * 1.根据查询的「出发城市」和「到达城市」 筛选出 t_train_station_relation 表中的所有条目，包含「出发时间」、「历时」、「到达时间（计算得出）」、出发站点、到达站点
          * 但仅有 t_train_station_relation 表的数据是不完整的，因为它仅包含 train_id(外键，也是 t_train 的主键),
          * 2. 还需要JOIN 操作，根据 t_train_station_relation.train_id 在 t_train 找 train_num(车次号)
@@ -143,6 +144,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
+    @Transactional(rollbackFor = Throwable.class)
     public String purchaseTickets(PurchaseTicketReqDTO req) {
         String trainId = req.getTrainId();
         TrainDO trainDO = distributedCache.get(
