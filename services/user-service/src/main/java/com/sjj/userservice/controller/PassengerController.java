@@ -1,6 +1,7 @@
 package com.sjj.userservice.controller;
 
 import com.sjj.conventionspringbootstarter.result.Result;
+import com.sjj.userservice.dto.req.PassengerRemoveReqDTO;
 import com.sjj.userservice.dto.req.PassengerReqDTO;
 import com.sjj.userservice.dto.resp.PassengerRespDTO;
 import com.sjj.userservice.service.PassengerService;
@@ -51,6 +52,15 @@ public class PassengerController {
     @PostMapping("/api/user-service/passenger/update")
     public Result<Void> updatePassenger(@RequestBody PassengerReqDTO requestParam){
         passengerService.updatePassenger(requestParam);
+        return Results.success();
+    }
+
+    /**
+     * 删除乘车人
+     */
+    @PostMapping("/api/user-service/passenger/remove")
+    public Result<Void> removePassenger(@RequestBody PassengerRemoveReqDTO requestParam){
+        passengerService.removePassenger(requestParam);
         return Results.success();
     }
 }

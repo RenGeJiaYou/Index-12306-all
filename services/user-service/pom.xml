@@ -88,6 +88,13 @@
             <artifactId>convention-spring-boot-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.sjj</groupId>
+            <artifactId>common-spring-boot-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-annotation</artifactId>

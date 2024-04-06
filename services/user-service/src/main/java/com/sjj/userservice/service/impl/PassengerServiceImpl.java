@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.sjj.commonspringbootstarter.toolkit.BeanUtil;
 import com.sjj.userservice.dao.entity.PassengerDO;
 import com.sjj.userservice.dao.mapper.PassengerMapper;
+import com.sjj.userservice.dto.req.PassengerRemoveReqDTO;
 import com.sjj.userservice.dto.req.PassengerReqDTO;
 import com.sjj.userservice.dto.resp.PassengerRespDTO;
 import com.sjj.userservice.service.PassengerService;
@@ -57,5 +58,13 @@ public class PassengerServiceImpl implements PassengerService {
                 .eq(PassengerDO::getUsername,passenger.getUsername())
                 .eq(PassengerDO::getId,passenger.getId());
         passengerMapper.update(passenger,wrapper);
+    }
+
+    @Override
+    public void removePassenger(PassengerRemoveReqDTO requestParam) {
+        var delWrapper = Wrappers.lambdaQuery(PassengerDO.class)
+                .eq(PassengerDO::getId,requestParam.getId())
+                .eq(PassengerDO::getUsername,requestParam.getUsername());
+        passengerMapper.delete(delWrapper);
     }
 }

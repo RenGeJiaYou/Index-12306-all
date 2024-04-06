@@ -1,5 +1,6 @@
 package com.sjj.userservice.service;
 
+import com.sjj.userservice.dto.req.PassengerRemoveReqDTO;
 import com.sjj.userservice.dto.req.PassengerReqDTO;
 import com.sjj.userservice.dto.resp.PassengerRespDTO;
 
@@ -44,4 +45,5 @@ public interface PassengerService {
      */
     void updatePassenger(PassengerReqDTO requestParam);
 
+    void removePassenger(PassengerRemoveReqDTO requestParam);
 }
