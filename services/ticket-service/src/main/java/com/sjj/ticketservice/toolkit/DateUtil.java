@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -31,6 +32,20 @@ public final class DateUtil {
         return String.format("%02d:%02d",
                 duration.toHours(),
                 duration.toMinutes() % 60);
+    }
+
+    /**
+     * 日期转换为列车行驶开始时间和结束时间
+     *
+     * @param date    时间
+     * @param pattern 日期格式
+     * @return 日期格式对应的时间字符串
+     */
+    public static String convertDateToLocalTime(Date date,String pattern){
+        LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        return localDateTime.format(formatter);
+
     }
 
     @SneakyThrows

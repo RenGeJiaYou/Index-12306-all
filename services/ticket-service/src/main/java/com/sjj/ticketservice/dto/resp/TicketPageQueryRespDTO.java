@@ -1,63 +1,45 @@
 package com.sjj.ticketservice.dto.resp;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sjj.ticketservice.dto.domain.BulletTrainDTO;
+import com.sjj.ticketservice.dto.domain.TicketListDTO;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.util.List;
 
 /**
- * 车票分页查询响应参数
+ * 车票分页查询响应参数。用户购票时选定起止站和日期后，会响应一堆可选的车次集合
  *
  * @author Island_World
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TicketPageQueryRespDTO{
     /**
-     * 车次
+     * 车次集合数据
      */
-    private String trainNumber;
+    private List<TicketListDTO> trainList;
 
     /**
-     * 出发时间
+     * 车次类型：D-动车 Z-直达 复兴号等
      */
-    @JsonFormat(pattern = "HH:mm", timezone = "GMT+8")
-    private Date departureTime;
+    private List<Integer> trainBrandList;
 
     /**
-     * 到达时间
+     * 出发车站
      */
-    @JsonFormat(pattern = "HH:mm", timezone = "GMT+8")
-    private Date arrivalTime;
+    private List<String> departureStationList;
 
     /**
-     * 历时
+     * 到达车站
      */
-    private String duration;
+    private List<String> arrivalStationList;
 
     /**
-     * 出发站点
+     * 车次席别
      */
-    private String departure;
-
-    /**
-     * 到达站点
-     */
-    private String arrival;
-
-    /**
-     * 始发站标识
-     */
-    private Boolean departureFlag;
-
-    /**
-     * 终点站标识
-     */
-    private Boolean arrivalFlag;
-
-
-    /**
-     * 高铁属性
-     */
-    private BulletTrainDTO bulletTrain;
+    private List<Integer> seatClassTypeList;
 }

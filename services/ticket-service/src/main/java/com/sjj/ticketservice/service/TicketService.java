@@ -1,6 +1,5 @@
 package com.sjj.ticketservice.service;
 
-import com.sjj.conventionspringbootstarter.page.PageResponse;
 import com.sjj.ticketservice.dto.req.PurchaseTicketReqDTO;
 import com.sjj.ticketservice.dto.req.TicketPageQueryReqDTO;
 import com.sjj.ticketservice.dto.resp.TicketPageQueryRespDTO;
@@ -19,7 +18,7 @@ public interface TicketService {
      * @param req 分页查询车票请求参数
      * @return 查询车票返回结果
      */
-    PageResponse<TicketPageQueryRespDTO> pageListTicketQuery(TicketPageQueryReqDTO req);
+    TicketPageQueryRespDTO pageListTicketQuery(TicketPageQueryReqDTO req);
 
     /**
      * 1.购买车票，根据策略模式选特定等级的车座 2.新增车票记录 3.远程调用 Order 服务创建订单

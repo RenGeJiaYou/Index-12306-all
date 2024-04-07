@@ -1,6 +1,5 @@
 package com.sjj.ticketservice.controller;
 
-import com.sjj.conventionspringbootstarter.page.PageResponse;
 import com.sjj.conventionspringbootstarter.result.Result;
 import com.sjj.ticketservice.dto.req.PurchaseTicketReqDTO;
 import com.sjj.ticketservice.dto.req.TicketPageQueryReqDTO;
@@ -28,7 +27,7 @@ public class TicketController {
      * 根据条件查询车票
      */
     @GetMapping("/api/ticket-service/ticket/query")
-    public Result<PageResponse<TicketPageQueryRespDTO>> pageListTicketQuery(TicketPageQueryReqDTO req){
+    public Result<TicketPageQueryRespDTO> pageListTicketQuery(TicketPageQueryReqDTO req){
         return Results.success(ticketService.pageListTicketQuery(req));
     }
 
